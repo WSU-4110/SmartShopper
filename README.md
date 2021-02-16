@@ -1,3 +1,3 @@
 **SmartShopper**
 
-Possible add items implementations
+Possible add items implementation
