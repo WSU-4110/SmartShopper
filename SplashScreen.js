@@ -39,7 +39,7 @@ export default class App extends Component {
           <View style={{ margin: 10 }}>
             <Text
               style={{ color: '#114998', fontSize: 17, fontWeight: 'bold' }}>
-              Secret Shoppers
+              Smart Shoppers
             </Text>
           </View>
         )}
