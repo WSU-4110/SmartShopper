@@ -1,8 +1,8 @@
 import React from "react";
-import Main from "./App/components/main.js";
+import AddDelete from "./App/components/AddDelete.js";
 
 export default class App extends React.Component {
   render() {
-    return <Main />;
+    return <AddDelete />;
   }
 }
