@@ -1,3 +1,3 @@
 **SmartShopper**
 
-Possible add items implementation
+Add items implementation. Current working version of the App.
