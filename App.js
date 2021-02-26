@@ -1,7 +1,8 @@
+
 import React, { Component} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import CustomButton from '../demo/App code/CustomButton';//needed library for custom buttons to work
-
+import AddDelete from "./App/components/AddDelete.js";
 
 export default class App extends Component {
 
@@ -34,3 +35,4 @@ export default class App extends Component {
         padding:20
     }
     });
+
