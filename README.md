@@ -1,3 +1,10 @@
 **SmartShopper**
 
-**This is a homescreen (work in progress)**
+
+
+
+
+
+
+
+Homescreen.js is a home screen!
