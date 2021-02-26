@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import CustomButton from '../demo/App code/CustomButton';
+import CustomButton from '../demo/App code/CustomButton';//needed library for custom buttons to work
 
 
 export default class App extends Component {
@@ -10,25 +10,14 @@ export default class App extends Component {
   return (
     <View style={title.background}>
       <Text style={title.ShopperTitle}>SmartShopper</Text>
-  
-    <CustomButton text='Add Item' color='#222222'/>
-    <CustomButton text='View History' color='#222222'/>
-    <CustomButton text='Sort Items' color='#222222'/>
-    <CustomButton text='Expiration Dates' color='#222222'/>
+        <CustomButton text='Add Item' color='#222222'/>
+        <CustomButton text='View History' color='#222222'/>
+        <CustomButton text='Sort Items' color='#222222'/>
+        <CustomButton text='Expiration Dates' color='#222222'/>
     </View>
   );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#222222',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding:200
-  }
-  });
 
   const title = StyleSheet.create({
     background: {
