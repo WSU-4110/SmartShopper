@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Alert, Keyboard, FlatList, StyleSheet, Text, TouchableWithoutFeedback, TouchableOpacity, View } from "react-native";
-
 import Items from "../components/Items.js";
 import Add from "../components/Add.js";
 
@@ -33,14 +32,6 @@ export default function AddDelete() {
     } else {
       Alert.alert("Alert!", "Item must be over 1 character long", [{ text: "OK", onPress: () => console.log("alert closed") }]);
     }
-    // if (price.length > 1) {
-    //   setTodos((prevTodos) => {
-    //     setVisible(false);
-    //     return [{ price, key: Math.random().toString() }, ...prevTodos];
-    //   });
-    // } else {
-    //   Alert.alert("Alert!", "Item must be over 1 character long", [{ text: "OK", onPress: () => console.log("alert closed") }]);
-    // }
   };
 
   return (
@@ -63,7 +54,6 @@ export default function AddDelete() {
 
           {/**Passing functions submitHandler and visibleToggleMain to the add component so they can be used outside of AddDelete*/}
           {visible ? <Add style={styles.addContainer} submitHandler={submitHandler} visibleToggleMain={visibleToggleMain} /> : null}
-
           {/** List container*/}
           <View style={styles.list}>
             {/**Actual List */}
