@@ -1,4 +1,3 @@
-
 import React, { Component} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import CustomButton from './App code/CustomButton';//needed library for custom buttons to work
@@ -9,6 +8,7 @@ export default class App extends Component {
   render(){
   
   return (
+    //<AddDelete />; <--complete add component
     <View style={title.background}>
       <Text style={title.ShopperTitle}>SmartShopper</Text>
         <CustomButton text='Add Item' color='#222222'/>
@@ -35,4 +35,3 @@ export default class App extends Component {
         padding:20
     }
     });
-

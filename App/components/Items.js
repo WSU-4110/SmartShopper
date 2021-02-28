@@ -3,18 +3,25 @@ import { StyleSheet, TouchableOpacity, Text } from "react-native";
 
 export default function Items({ pressHandler, item }) {
   return (
-    <TouchableOpacity
-      style={styles.itemBtn}
-      onPress={() => pressHandler(item.key)}
-    >
-      <Text style={styles.item}>{item.text}</Text>
+    <TouchableOpacity style={styles.itemBtn} onPress={() => pressHandler(item.key)}>
+      <Text style={styles.item}>Name: {item.text}</Text>
+      <Text style={styles.price}>Price: {item.price}</Text>
+      <Text style={styles.exp}>Exp: {item.exp}</Text>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   item: {
-    padding: 16,
+    padding: 5,
+    color: "lightgrey",
+  },
+  price: {
+    padding: 5,
+    color: "lightgrey",
+  },
+  exp: {
+    padding: 5,
     color: "lightgrey",
   },
   itemBtn: {

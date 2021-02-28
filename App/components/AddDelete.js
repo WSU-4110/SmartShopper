@@ -1,36 +1,13 @@
 import React, { useState } from "react";
-import {
-  Alert,
-  Keyboard,
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-  View,
-} from "react-native";
-
+import { Alert, Keyboard, FlatList, StyleSheet, Text, TouchableWithoutFeedback, TouchableOpacity, View } from "react-native";
 import Items from "../components/Items.js";
 import Add from "../components/Add.js";
 
 export default function AddDelete() {
   const [todos, setTodos] = useState([
-    { text: "Milk", key: "1" },
-    { text: "Egg", key: "2" },
-    { text: "Bread", key: "3" },
-    { text: "Cat Food", key: "4" },
-    { text: "Dog Food", key: "5" },
-    { text: "Cereal", key: "6" },
-    { text: "Bananas", key: "7" },
-    { text: "Apples", key: "8" },
-    { text: "Juice", key: "9" },
-    { text: "Water Bottles", key: "10" },
-    { text: "Coffee", key: "11" },
-    { text: "Coffee Creamer", key: "12" },
-    { text: "Noodles", key: "13" },
-    { text: "Butter", key: "14" },
-    { text: "Vegetables", key: "15" },
-    { text: "Cheese", key: "16" },
+    { text: "Milk", exp: "02 / 12 / 2021", price: "$2", key: "1" },
+    { text: "Egg", exp: "02 / 22 / 2021", price: "$3", key: "2" },
+    { text: "Bread", exp: "02 / 17 / 2021", price: "$5", key: "3" },
   ]);
 
   const [visible, setVisible] = useState(false); //visible state that the Add component uses to switch between visible and invisible. True for visible, false otherwise
@@ -45,24 +22,22 @@ export default function AddDelete() {
       return prevTodos.filter((todo) => todo.key != key);
     });
   };
-
-  const submitHandler = (text) => {
+  // Input length checker (must be > 1)
+  const submitHandler = (text, price, exp) => {
     if (text.length > 1) {
       setTodos((prevTodos) => {
         setVisible(false);
-        return [{ text, key: Math.random().toString() }, ...prevTodos];
+        return [{ text, price, exp, key: Math.random().toString() }, ...prevTodos];
       });
     } else {
-      Alert.alert("OOPS", "Item must be over 1 character long", [
-        { text: "OK", onPress: () => console.log("alert closed") },
-      ]);
+      Alert.alert("Alert!", "Item must be over 1 character long", [{ text: "OK", onPress: () => console.log("alert closed") }]);
     }
   };
+
   return (
     <TouchableWithoutFeedback
       onPress={() => {
         Keyboard.dismiss();
-        console.log("dismissed");
       }}
     >
       {/**Content container */}
@@ -78,24 +53,11 @@ export default function AddDelete() {
           {/**{visible ? (If visible is true, do this command) : (if it is not true, do this command)} */}
 
           {/**Passing functions submitHandler and visibleToggleMain to the add component so they can be used outside of AddDelete*/}
-          {visible ? (
-            <Add
-              style={styles.addContainer}
-              submitHandler={submitHandler}
-              visibleToggleMain={visibleToggleMain}
-            />
-          ) : null}
-
+          {visible ? <Add style={styles.addContainer} submitHandler={submitHandler} visibleToggleMain={visibleToggleMain} /> : null}
           {/** List container*/}
           <View style={styles.list}>
             {/**Actual List */}
-            <FlatList
-              style={styles.listItems}
-              data={todos}
-              renderItem={({ item }) => (
-                <Items item={item} pressHandler={pressHandler} />
-              )}
-            />
+            <FlatList style={styles.listItems} data={todos} renderItem={({ item }) => <Items item={item} pressHandler={pressHandler} />} />
           </View>
         </View>
         {/**Footer View */}
@@ -136,7 +98,7 @@ const styles = StyleSheet.create({
   footer: {
     position: "absolute",
     backgroundColor: "#222222",
-    height: 120,
+    height: 0,
     bottom: 0,
     left: 0,
     right: 0,
@@ -146,7 +108,7 @@ const styles = StyleSheet.create({
     position: "absolute", //fixed at a cetain part of the screen
     zIndex: 11, //added z index of 11 so it is displayed on the top of all of the other components
     right: 20, //we added rigth and bottom because we want the button to be on the bottom right of the screen
-    bottom: 150,
+    bottom: 50,
     backgroundColor: "coral",
     width: 70, //width and height of the circle
     height: 70,
