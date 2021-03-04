@@ -19,3 +19,10 @@ An alternative route is to import the packages that are in the package.json file
 ``` bash
 "react-native-multiple-select-list": "^1.0.4"
 ```
+\
+**An easy to use shopping app, designed to help shoppers at the grocery store.**
+
+Progress: Add items implementation.
+
+Current working version of the App.
+

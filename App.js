@@ -3,7 +3,16 @@ import React from 'react';
 import {StyleSheet, Text, View } from 'react-native';
 import {Button} from 'react-native-elements';
 import CustomMultiPicker from "react-native-multiple-select-list";
+import AddDelete from "./App/components/AddDelete.js";
 
+
+export default class App extends React.Component {
+  render() {
+    return <AddDelete />;
+  }
+}
+
+/*
 //search bar
 export default function App() {
   return (
@@ -87,3 +96,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   }
 });
+*/
+
+
