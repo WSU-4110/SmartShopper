@@ -1,20 +1,5 @@
 import React, { useState } from "react";
-<<<<<<< HEAD
-import {
-  Alert,
-  Keyboard,
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-  View,
-} from "react-native";
-
-//.js imports
-=======
 import { Alert, Keyboard, FlatList, StyleSheet, Text, TouchableWithoutFeedback, TouchableOpacity, View } from "react-native";
->>>>>>> main
 import Items from "../components/Items.js";
 import Add from "../components/Add.js";
 
@@ -127,14 +112,8 @@ const styles = StyleSheet.create({
   addButton: {
     position: "absolute", //fixed at a certain part of the screen
     zIndex: 11, //added z index of 11 so it is displayed on the top of all of the other components
-<<<<<<< HEAD
-    right: 20, //we added right and bottom because we want the button to be on the bottom right of the screen
-    //bottom: 150,  //the right bottom if the footer is used
-    bottom: 10, //the right bottom if there is no footer
-=======
     right: 20, //we added rigth and bottom because we want the button to be on the bottom right of the screen
     bottom: 50,
->>>>>>> main
     backgroundColor: "coral",
     width: 70, //width and height of the circle
     height: 70,
