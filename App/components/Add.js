@@ -1,23 +1,25 @@
 import React, { useState } from "react";
-import {
-  Text,
-  StyleSheet,
-  View,
-  TextInput,
-  Button,
-  TouchableOpacity,
-} from "react-native";
+import { Text, StyleSheet, View, TextInput, TouchableOpacity } from "react-native";
 
 export default function Add({ submitHandler, visibleToggleMain }) {
   [text, setText] = useState("");
+  [price, setPrice] = useState("");
+  [exp, setExp] = useState("");
 
   const changeHandler = (val) => {
     setText(val);
   };
-
+  const changeHandler3 = (val) => {
+    setExp(val);
+  };
+  const changeHandler2 = (val) => {
+    setPrice(val);
+  };
   const pressHandler = () => {
-    submitHandler(text);
+    submitHandler(text, price, exp);
+    setExp("");
     setText("");
+    setPrice("");
   };
 
   const setVis = () => {
@@ -36,6 +38,22 @@ export default function Add({ submitHandler, visibleToggleMain }) {
         placeholder="New item..."
         onChangeText={changeHandler}
         value={text}
+      />
+      <TextInput
+        color="lightgrey"
+        placeholderTextColor="lightgrey"
+        style={styles.input}
+        placeholder="Price..."
+        onChangeText={changeHandler2}
+        value={price}
+      />
+      <TextInput
+        color="lightgrey"
+        placeholderTextColor="lightgrey"
+        style={styles.input}
+        placeholder="Exp..."
+        onChangeText={changeHandler3}
+        value={exp}
       />
       <TouchableOpacity style={styles.addBtn} onPress={pressHandler}>
         <Text>Add Item</Text>
@@ -63,7 +81,7 @@ const styles = StyleSheet.create({
     right: 10,
     zIndex: 11,
     padding: 20,
-    height: 200,
+    height: 350,
     borderRadius: 10,
     backgroundColor: "#252525",
     shadowColor: "#000",

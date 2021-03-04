@@ -25,4 +25,3 @@ An alternative route is to import the packages that are in the package.json file
 Progress: Add items implementation.
 
 Current working version of the App.
-
