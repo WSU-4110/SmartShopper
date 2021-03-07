@@ -21,7 +21,7 @@ export default function Home({navigation}) {
         <Text style={title.ShopperTitle}>Smart Shopper</Text>
         <View style={title.allignButton}>
           <CustomButton text='Create Lists' onPress ={pressHandler} color='coral'/>
-          <CustomButton text='Experation' onPress ={pressHandler1} color='coral'/>
+          <CustomButton text='Expiration' onPress ={pressHandler1} color='coral'/>
           <CustomButton text='History' onPress ={pressHandler2} color='coral'/>
         </View>
       </View>
