@@ -1,4 +1,5 @@
 import React, { Component} from 'react';
+<<<<<<< HEAD
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, FlatList, Keyboard } from 'react-native';
 import CustomButton from './App code/CustomButton';//needed library for custom buttons to work
 import AddDelete from "./App/components/AddDelete.js";
@@ -102,3 +103,16 @@ export default class App extends Component {
         </View>
 
         */
+=======
+import { render } from 'react-dom';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import CustomButton from './App code/CustomButton';//needed library for custom buttons to work
+import AddDelete from "./App/components/AddDelete.js";
+import Navigator from "./routes/homeStack";
+
+export default function App() {
+    return(
+    <Navigator />
+    );
+}
+>>>>>>> main
