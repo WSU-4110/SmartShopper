@@ -32,26 +32,26 @@ export default function Add({ submitHandler, visibleToggleMain }) {
     <View style={styles.addWindow}>
       {/**Passing functions to the add component */}
       <TextInput
-        color="lightgrey"
-        placeholderTextColor="lightgrey"
+        color="white"
+        placeholderTextColor="#5c5c5c"
         style={styles.input}
         placeholder="New item..."
         onChangeText={changeHandler}
         value={text}
       />
       <TextInput
-        color="lightgrey"
-        placeholderTextColor="lightgrey"
+        color="white"
+        placeholderTextColor="#5c5c5c"
         style={styles.input}
         placeholder="Price..."
         onChangeText={changeHandler2}
         value={price}
       />
       <TextInput
-        color="lightgrey"
-        placeholderTextColor="lightgrey"
+        color="white"
+        placeholderTextColor="#5c5c5c"
         style={styles.input}
-        placeholder="Exp..."
+        placeholder="Exp: MM/DD/YYY"
         onChangeText={changeHandler3}
         value={exp}
       />
