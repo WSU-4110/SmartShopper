@@ -24,13 +24,15 @@ export default function AddDelete() {
   };
   // Input length checker (must be > 1)
   const submitHandler = (text, price, exp) => {
-    if (text.length > 1) {
+    if (isNaN(price)) {
+      Alert.alert("Alert!", "Price must be a number", [{ text: "OK", onPress: () => console.log("alert closed") }]);
+    } else if (text.length > 1) {
       setTodos((prevTodos) => {
         setVisible(false);
         return [{ text, price, exp, key: Math.random().toString() }, ...prevTodos];
       });
     } else {
-      Alert.alert("Alert!", "Item must be over 1 character long", [{ text: "OK", onPress: () => console.log("alert closed") }]);
+      Alert.alert("Alert!", "Input must be over 1 character long", [{ text: "OK", onPress: () => console.log("alert closed") }]);
     }
   };
 
