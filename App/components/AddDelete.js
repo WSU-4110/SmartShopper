@@ -1,7 +1,12 @@
 import React, { useState } from "react";
-import { Alert, Keyboard, FlatList, StyleSheet, Text, TouchableWithoutFeedback, TouchableOpacity, View } from "react-native";
+import { Alert, Keyboard, FlatList, StyleSheet, Text, TouchableWithoutFeedback, TouchableOpacity, View, TextInput} from "react-native";
 import Items from "../components/Items.js";
 import Add from "../components/Add.js";
+import Icon from 'react-native-vector-icons/Ionicons';
+import * as Animatable from 'react-native-animatable';
+import { ListItem } from 'react-native-elements';
+
+
 
 export default function AddDelete() {
   const [todos, setTodos] = useState([
@@ -34,50 +39,77 @@ export default function AddDelete() {
     }
   };
 
-  return (
-    <TouchableWithoutFeedback
-      onPress={() => {
-        Keyboard.dismiss();
-      }}
-    >
-      {/**Content container */}
-      <View style={styles.container}>
-        {/**Header container */}
-        <View style={styles.header}>
-          <Text style={styles.headerText}> SMARTSHOPPER </Text>
-        </View>
-        {/**Container containing the list and the add list item window */}
-        <View style={styles.content}>
-          {/**Ternary Operator focusing on the visible state condition */}
+    /*  need to convert this to a function
+      state =
+      {
+        searchBarFocused: false
+      }
+    */
 
-          {/**{visible ? (If visible is true, do this command) : (if it is not true, do this command)} */}
 
-          {/**Passing functions submitHandler and visibleToggleMain to the add component so they can be used outside of AddDelete*/}
-          {visible ? <Add style={styles.addContainer} submitHandler={submitHandler} visibleToggleMain={visibleToggleMain} /> : null}
-          {/** List container*/}
-          <View style={styles.list}>
-            {/**Actual List */}
-            <FlatList style={styles.listItems} data={todos} renderItem={({ item }) => <Items item={item} pressHandler={pressHandler} />} />
+
+
+
+    return (
+      <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
+        }}
+      >
+        {/**Content container */}
+        <View style={styles.container}>
+
+          {/**Header container */}
+          <View style={styles.header}>
+            <Animatable.View animation = 'slideInRight' duration = {1000} style={{height: 150, justifyContent: 'center', paddingHorizontal: 5}}>
+              <Text style={styles.headerText}> SMARTSHOPPER </Text>
+
+              <Animatable.View animation = 'slideInRight' duration = {1000} style = {{height: 50, marginTop: 0, paddingVertical: 20, backgroundColor: 'white',
+              flexDirection: 'row', padding: 5, alignItems: 'center', flex: .3}}>
+                <Animatable.View animation = 'fadeInRight'>
+                  <Icon name = 'ios-search' style = {{fontSize: 12}}/>
+                </Animatable.View>
+              <TextInput placeholder = "Tap to Search" style = {{fontSize: 15, marginLeft: 15, flex: 1}}/>
+              </Animatable.View>
+            </Animatable.View>
           </View>
-        </View>
-        
-        {/*i removed the footer and pushed the button down since nothing was being stored in the footer*/}
-        {/**Footer View */}
-        {/*<View style={styles.footer}></View>*/}
 
-        {/**Add "+" button */}
-        <TouchableOpacity
-          style={styles.addButton}
-          onPress={() => {
-            setVisible(true);
-          }}
-        >
-          <Text style={styles.addButtonText}>+</Text>
-        </TouchableOpacity>
-      </View>
-    </TouchableWithoutFeedback>
-  );
-}
+
+          {/**Container containing the list and the add list item window */}
+          <View style={styles.content}>
+            {/**Ternary Operator focusing on the visible state condition */}
+
+            {/**{visible ? (If visible is true, do this command) : (if it is not true, do this command)} */}
+
+            {/**Passing functions submitHandler and visibleToggleMain to the add component so they can be used outside of AddDelete*/}
+            {visible ? <Add style={styles.addContainer} submitHandler={submitHandler} visibleToggleMain={visibleToggleMain} /> : null}
+            {/** List container*/}
+            <View style={styles.list}>
+              {/**Actual List */}
+              <FlatList style={styles.listItems} data={todos} renderItem={({ item }) => <Items item={item} pressHandler={pressHandler} />} />
+            </View>
+          </View>
+
+          {/*i removed the footer and pushed the button down since nothing was being stored in the footer*/}
+          {/**Footer View */}
+          {/*<View style={styles.footer}></View>*/}
+
+          {/**Add "+" button */}
+          <TouchableOpacity
+            style={styles.addButton}
+            onPress={() => {
+              setVisible(true);
+            }}
+          >
+            <Text style={styles.addButtonText}>+</Text>
+          </TouchableOpacity>
+
+        </View>
+      </TouchableWithoutFeedback>
+
+    );
+  }
+
 
 
 const styles = StyleSheet.create({
@@ -95,7 +127,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   headerText: {
-    marginTop: 30,
+    height: 10,
+    marginTop: -20,
     color: "white",
     fontSize: 18,
     padding: 26,
@@ -145,3 +178,8 @@ const styles = StyleSheet.create({
     paddingBottom: 500,
   },
 });
+
+
+
+
+
