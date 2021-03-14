@@ -39,16 +39,6 @@ export default function AddDelete() {
     }
   };
 
-    /*  need to convert this to a function
-      state =
-      {
-        searchBarFocused: false
-      }
-    */
-
-
-
-
 
     return (
       <TouchableWithoutFeedback
@@ -103,6 +93,12 @@ export default function AddDelete() {
           >
             <Text style={styles.addButtonText}>+</Text>
           </TouchableOpacity>
+
+          <FlatList
+            data = {[todos, setTodos]}
+            renderItem = {({item}) => <Items item = {item} />}
+            keyExtractor = {(item, index) => index.toString()}
+          />
 
         </View>
       </TouchableWithoutFeedback>
