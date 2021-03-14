@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Text, StyleSheet, View, TextInput, TouchableOpacity } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 
 export default function Add({ submitHandler, visibleToggleMain }) {
   [text, setText] = useState("");
