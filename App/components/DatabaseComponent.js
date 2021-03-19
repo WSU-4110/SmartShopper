@@ -32,21 +32,15 @@ class Items extends React.Component {
       <View style={styles.sectionContainer}>
         {/* Map loop to iterate through the database and show them in a Text component */}
         {items.map(({ id, name, expirationDate, price }) => (
-          <TouchableOpacity
-            key={id}
-            style={{
-              backgroundColor: "#fff",
-              borderColor: "#000",
-              borderWidth: 1,
-              padding: 8,
-            }}
-          >
-            <Text>
-              {/* These are the values coming from the database */}
-              {id}
-              {name}
-              {expirationDate}
-              {price}
+          <TouchableOpacity key={id} style={styles.itemcontainer}>
+            {/* These are the values coming from the database */}
+
+            <Text style={styles.itemTextName}>{name}</Text>
+            <Text style={styles.itemText}>
+              Expires on: <Text style={styles.bold}>{expirationDate}</Text>
+            </Text>
+            <Text style={styles.itemText}>
+              Cost: <Text style={styles.bold}>{price}</Text>
             </Text>
           </TouchableOpacity>
         ))}
@@ -100,7 +94,10 @@ export default class DataBaseComponent extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.heading}>SmartShopper Database</Text>
+        <Text style={styles.heading}>My List</Text>
+        <Text style={{ textAlign: "center", marginBottom: 30, color: "coral" }}>
+          This is your current working shopping list!
+        </Text>
         <View style={styles.flexRow}></View>
         <ScrollView style={styles.listArea}>
           <Items />
@@ -111,23 +108,44 @@ export default class DataBaseComponent extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  bold: {
+    fontWeight: "bold",
+  },
   container: {
-    backgroundColor: "#fff",
+    backgroundColor: "#252525",
     flex: 1,
     paddingTop: Constants.statusBarHeight,
   },
   heading: {
-    fontSize: 20,
+    fontSize: 26,
     fontWeight: "bold",
     textAlign: "center",
     paddingBottom: 30,
+    color: "coral",
   },
+  itemcontainer: {
+    backgroundColor: "#252525",
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10,
+  },
+  itemText: {
+    color: "lightgrey",
+    marginBottom: 5,
+  },
+  itemTextName: {
+    color: "lightgrey",
+    fontWeight: "bold",
+    fontSize: 25,
+    marginBottom: 5,
+  },
+
   flexRow: {
     flexDirection: "row",
   },
 
   listArea: {
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "#1f1f1f",
     flex: 1,
     paddingTop: 16,
   },
