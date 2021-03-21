@@ -28,8 +28,9 @@ Current working version of the App.
 
 This will show the splash screen for our application.
 Added Database Functionality
+Added **History** Functionality
 
-Make to add the expo-sqlite dependency if you do not have it already!
+Make sure to add the expo-sqlite dependency if you do not have it already!
 
 Expo SQLite dependency Command:
 

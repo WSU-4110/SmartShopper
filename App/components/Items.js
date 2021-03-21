@@ -5,11 +5,18 @@ export default function Items({ pressHandler, item }) {
   return (
     <View>
       <TouchableOpacity style={styles.itemBtn}>
-        <Text style={styles.item}>Name: {item.text}</Text>
-        <Text style={styles.price}>Price: {item.price}</Text>
-        <Text style={styles.exp}>Exp: {item.exp}</Text>
+        <Text style={styles.item}>{item.text}</Text>
+        <Text style={styles.price}>
+          Price: <Text style={styles.bold}>${item.price}</Text>
+        </Text>
+        <Text style={styles.exp}>
+          Exp: <Text style={styles.bold}>{item.exp}</Text>
+        </Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.delBtn} onPress={() => pressHandler(item.key)}>
+      <TouchableOpacity
+        style={styles.delBtn}
+        onPress={() => pressHandler(item.key)}
+      >
         <Image source={require("./../../assets/del.webp")} style={styles.del} />
       </TouchableOpacity>
     </View>
@@ -17,17 +24,22 @@ export default function Items({ pressHandler, item }) {
 }
 
 const styles = StyleSheet.create({
+  bold: {
+    fontWeight: "bold",
+  },
   item: {
     padding: 5,
-    color: "white",
+    color: "lightgrey",
+    fontWeight: "bold",
+    fontSize: 25,
   },
   price: {
     padding: 5,
-    color: "white",
+    color: "lightgrey",
   },
   exp: {
     padding: 5,
-    color: "white",
+    color: "lightgrey",
   },
   delBtn: {
     backgroundColor: "#252525",
