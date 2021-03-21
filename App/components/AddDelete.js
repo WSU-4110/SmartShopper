@@ -80,6 +80,8 @@ export default function AddDelete() {
       <View style={styles.container}>
 
         {/**Header container */}
+        {/**Animatable.View is incorporated to give animation to the search bar coming into view*/}
+        {/**Icon is used to add an icon in the search bar*/}
           <View style={styles.header}>
             <Animatable.View animation = 'slideInRight' duration = {1000} style={{height: 150, justifyContent: 'center', paddingHorizontal: 5}}>
               <Text style={styles.headerText}> Create Your List  </Text>
