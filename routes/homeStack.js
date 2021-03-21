@@ -14,10 +14,10 @@ const screens = {
     screen: AddDelete,
   },
   Experation: {
-    screen: Experation,
+    screen: DataBaseComponent,
   },
   History: {
-    screen: DataBaseComponent, //Enter History here; I've been switching this value with DatabaseComponent for debugging purposes and viewing the database.
+    screen: History, //Enter History here; I've been switching this value with DatabaseComponent for debugging purposes and viewing the database.
   },
 };
 

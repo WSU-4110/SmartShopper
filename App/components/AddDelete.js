@@ -12,18 +12,23 @@ import {
 import Items from "../components/Items.js";
 import Add from "../components/Add.js";
 import DataBaseComponent from "../components/DatabaseComponent.js";
+import HistoryDataBase from "../../Screens/History.js";
+import { MaterialIcons } from "@expo/vector-icons";
 
 export default function AddDelete() {
   const [todos, setTodos] = useState([
-    { text: "Milk", exp: "02 / 12 / 2021", price: "$2", key: "1" },
-    { text: "Egg", exp: "02 / 22 / 2021", price: "$3", key: "2" },
-    { text: "Bread", exp: "02 / 17 / 2021", price: "$5", key: "3" },
+    { text: "Milk", exp: "02 / 12 / 2021", price: "2", key: "1" },
+    { text: "Egg", exp: "02 / 22 / 2021", price: "3", key: "2" },
+    { text: "Bread", exp: "02 / 17 / 2021", price: "5", key: "3" },
   ]);
 
   //database instance
   var db = new DataBaseComponent();
+  var hdb = new HistoryDataBase();
 
   const [visible, setVisible] = useState(false); //visible state that the Add component uses to switch between visible and invisible. True for visible, false otherwise
+
+  const [saveVisible, setSaveVisible] = useState(false); //visible state that the Save component uses to switch between visible and invisible. True for visible, false otherwise
 
   //function to call the setVisible function in order to change the visible state contents
   const visibleToggleMain = () => {
@@ -59,8 +64,14 @@ export default function AddDelete() {
   //add to database function.
   //Map is like a for each loop, adding each state to the databse all at once
   const addToDB = (todos) => {
+    //adding to our current list database
     todos.map((todos) => {
       db.add(todos.text, todos.exp, todos.price);
+    });
+
+    //adding to our history database
+    todos.map((todos) => {
+      hdb.add(todos.text, todos.exp, todos.price);
     });
   };
 
@@ -74,7 +85,7 @@ export default function AddDelete() {
       <View style={styles.container}>
         {/**Header container */}
         <View style={styles.header}>
-          <Text style={styles.headerText}> SMARTSHOPPER </Text>
+          <Text style={styles.headerText}> Create Your List </Text>
         </View>
         {/**Container containing the list and the add list item window */}
         <View style={styles.content}>
@@ -90,6 +101,36 @@ export default function AddDelete() {
               visibleToggleMain={visibleToggleMain}
             />
           ) : null}
+          {/* ///////////////////////////////////////////////////////////////////////// */}
+
+          {saveVisible ? (
+            <View style={styles.saveWindow}>
+              <Text style={styles.saveTitle}>Are you sure?</Text>
+              <Text style={styles.saveMessage}>
+                By pressing the "Save List" button, your list will be saved
+                under MyList. Your items will also be saved to History.
+              </Text>
+
+              <TouchableOpacity
+                style={styles.saveConfirmBtn}
+                onPress={() => {
+                  addToDB(todos);
+                  setSaveVisible(false);
+                }}
+              >
+                <Text>Save List</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.cancelBtn}
+                onPress={() => {
+                  setSaveVisible(false);
+                }}
+              >
+                <Text style={styles.cancelBtnText}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
+          ) : null}
+
           {/** List container*/}
           <View style={styles.list}>
             {/**Actual List */}
@@ -111,7 +152,7 @@ export default function AddDelete() {
             setVisible(true);
           }}
         >
-          <Text style={styles.addButtonText}>+</Text>
+          <MaterialIcons name="add-shopping-cart" size={30} color="white" />
         </TouchableOpacity>
 
         {/**Save "SAVE" button
@@ -120,10 +161,10 @@ export default function AddDelete() {
         <TouchableOpacity
           style={styles.saveButton}
           onPress={() => {
-            addToDB(todos);
+            setSaveVisible(true);
           }}
         >
-          <Text style={styles.saveButtonText}>SAVE</Text>
+          <MaterialIcons name="save-alt" size={28} color="white" />
         </TouchableOpacity>
       </View>
     </TouchableWithoutFeedback>
@@ -131,23 +172,38 @@ export default function AddDelete() {
 }
 
 const styles = StyleSheet.create({
+  cancelBtn: {
+    marginTop: 10,
+    color: "coral",
+    width: "100%", //width and height of the circle
+    height: 50,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "coral",
+    alignItems: "center",
+    justifyContent: "center", //aligning the items in the center of the circle
+  },
+  cancelBtnText: {
+    color: "coral",
+  },
   container: {
     flex: 1,
   },
   content: {
     padding: 10,
-    backgroundColor: "#2d2d2d",
+    backgroundColor: "#1f1f1f",
   },
   header: {
-    backgroundColor: "coral",
+    backgroundColor: "#252525",
     alignItems: "center",
     justifyContent: "center",
   },
   headerText: {
-    marginTop: 30,
-    color: "white",
-    fontSize: 18,
+    marginTop: 10,
+    fontSize: 25,
     padding: 26,
+    fontWeight: "bold",
+    color: "coral",
   },
   footer: {
     position: "absolute",
@@ -181,10 +237,6 @@ const styles = StyleSheet.create({
 
     elevation: 8,
   },
-  addButtonText: {
-    color: "#fff",
-    fontSize: 24,
-  },
 
   saveButton: {
     position: "absolute", //fixed at a cetain part of the screen
@@ -194,7 +246,7 @@ const styles = StyleSheet.create({
     backgroundColor: "coral",
     width: 70, //width and height of the circle
     height: 70,
-    borderRadius: 10,
+    borderRadius: 50,
     alignItems: "center",
     justifyContent: "center", //aligning the items in the center of the circle
     elevation: 8,
@@ -209,16 +261,56 @@ const styles = StyleSheet.create({
 
     elevation: 8,
   },
-  saveButtonText: {
+  saveConfirmBtn: {
     color: "#fff",
-    fontSize: 24,
+    backgroundColor: "coral",
+    width: "100%", //width and height of the circle
+    height: 50,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center", //aligning the items in the center of the circle
   },
+  saveWindow: {
+    position: "absolute",
+    width: "90%",
+    margin: "5%",
+    top: 0,
+    right: 10,
+    zIndex: 11,
+    padding: 20,
+    height: 375,
+    borderRadius: 10,
+    backgroundColor: "#252525",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 12,
+    },
+    shadowOpacity: 0.58,
+    shadowRadius: 16.0,
 
+    elevation: 24,
+  },
+  saveTitle: {
+    fontWeight: "bold",
+    color: "lightgrey",
+    textAlign: "center",
+    fontSize: 30,
+    marginBottom: 15,
+    marginTop: 15,
+  },
+  saveMessage: {
+    color: "lightgrey",
+    textAlign: "center",
+    fontSize: 20,
+    marginBottom: 40,
+    marginTop: 30,
+  },
   addContainer: {
     backgroundColor: "black",
   },
   listItems: {
-    height: 670,
+    height: 700,
     paddingLeft: 3,
     paddingBottom: 500,
   },
