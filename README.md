@@ -39,12 +39,13 @@ This will show the splash screen for our application.
 Added Database Functionality
 Added **History** Functionality
 
+``` bash
 npm install react-native-animatable --save
 npm install https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz
 npm install @react-navigation/native
 expo install react-native-gesture-handler react-native-reanimated
 npm install react-navigation-stack @react-native-community/masked-view react-native-safe-area-context
-
+```
 Make sure to add the expo-sqlite dependency if you do not have it already!
 
 Expo SQLite dependency Command:
