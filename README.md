@@ -39,8 +39,9 @@ This will show the splash screen for our application.
 Added Database Functionality
 Added **History** Functionality
 
-#### Installing all dependencies 
-Make sure to add them if you do not have it already!
+## Installing all dependencies 
+
+Make sure to add them if you do not have them already!
 ``` bash
 npm install react-native-animatable --save
 npm install https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz
