@@ -51,7 +51,7 @@ export default function Add({ submitHandler, visibleToggleMain }) {
         color="white"
         placeholderTextColor="#5c5c5c"
         style={styles.input}
-        placeholder="Exp: MM/DD/YYY"
+        placeholder="Exp: MM/DD/YYYY"
         onChangeText={changeHandler3}
         value={exp}
       />
@@ -72,16 +72,18 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     borderBottomWidth: 1,
     borderBottomColor: "lightgrey",
+    fontSize: 20,
+    fontWeight: "bold",
   },
   addWindow: {
     position: "absolute",
     width: "90%",
     margin: "5%",
-    top: 100,
+    top: 20,
     right: 10,
     zIndex: 11,
     padding: 20,
-    height: 350,
+    height: 325,
     borderRadius: 10,
     backgroundColor: "#252525",
     shadowColor: "#000",
