@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import { ForceTouchGestureHandler } from "react-native-gesture-handler";
 import CustomButton from "../App code/CustomButton"; //needed library for custom buttons to work
 import Add from "../App/components/AddDelete.js";
+import {BGDesign} from "./BackGroundDesign.js";
+
 
 export default function Home({ navigation }) {
   const pressHandler = () => {
@@ -15,7 +17,7 @@ export default function Home({ navigation }) {
     navigation.navigate("History");
   };
   return (
-    <View style={title.background}>
+    <View style={BGDesign.background}>
       <Text style={title.ShopperTitle}>Smart Shopper</Text>
       <View style={title.allignButton}>
         <CustomButton text="Create Lists" onPress={pressHandler} color="black" />
@@ -27,11 +29,6 @@ export default function Home({ navigation }) {
 }
 
 const title = StyleSheet.create({
-  background: {
-    backgroundColor: "coral",
-    height: "100%",
-    width: "100%",
-  },
   ShopperTitle: {
     marginTop: 25,
     textAlign: "center",
@@ -46,3 +43,4 @@ const title = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
