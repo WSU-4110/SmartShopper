@@ -1,5 +1,6 @@
 import React from "react";
-import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { ScrollView, Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import itembtn from "./../../itemstyle";
 import Constants from "expo-constants";
 
 import * as SQLite from "expo-sqlite";
@@ -84,14 +85,14 @@ class Items extends React.Component {
       <View style={styles.sectionContainer}>
         {/* Map loop to iterate through the database and show them in a Text component */}
         {items.map(({ id, name, expirationDate, price }) => (
-          <TouchableOpacity key={id} style={styles.itemcontainer}>
+          <TouchableOpacity key={id} style={styles.container}>
             {/* These are the values coming from the database */}
 
-            <Text style={styles.itemTextName}>{name}</Text>
-            <Text style={styles.itemText}>
+            <Text style={itembtn.name}>{name}</Text>
+            <Text style={itembtn.attributes}>
               Expires on: <Text style={styles.bold}>{expirationDate}</Text>
             </Text>
-            <Text style={styles.itemText}>
+            <Text style={itembtn.attributes}>
               Cost: <Text style={styles.bold}>{price}</Text>
             </Text>
           </TouchableOpacity>
@@ -136,22 +137,6 @@ const styles = StyleSheet.create({
   },
   sortBtn: {
     marginLeft: 330,
-  },
-  itemcontainer: {
-    backgroundColor: "#252525",
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
-  },
-  itemText: {
-    color: "white",
-    marginBottom: 5,
-  },
-  itemTextName: {
-    color: "white",
-    fontWeight: "bold",
-    fontSize: 25,
-    marginBottom: 5,
   },
 
   flexRow: {
