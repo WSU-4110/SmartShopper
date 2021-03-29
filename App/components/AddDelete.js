@@ -22,6 +22,7 @@ export default function AddDelete() {
       return prevTodos.filter((todo) => todo.key != key);
     });
   };
+
   // Input length checker (must be > 1)
   const submitHandler = (text, price, exp) => {
     if (isNaN(price)) {
