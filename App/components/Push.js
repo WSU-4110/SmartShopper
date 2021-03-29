@@ -1,69 +1,81 @@
-import React from 'react';
-import { Text, View, Button, Vibration, Platform } from 'react-native';
-import { Notifications } from 'expo';
+import { StatusBar } from 'expo-status-bar';
+import React, { useEffect } from 'react';
+import { StyleSheet, Text, Button, View } from 'react-native';
+import * as Notification from 'expo-notifications';
 import * as Permissions from 'expo-permissions';
-import Constants from 'expo-constants';
+import { USER_FACING_NOTIFICATIONS } from 'expo-permissions';
 
-export default class AppContainer extends React.Component {
-  state = {
-    expoPushToken: '',
-    notification: {},
-  };
+Notification.setNotificationHandler({
+  handleNotification: async () => {
+    return {
+      shouldShowAlert: true,
+      shouldPlaySound: true
+    };
+  }
+});
 
-  registerForPushNotificationsAsync = async () => {
-    if (Constants.isDevice) {
-      const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
-      let finalStatus = existingStatus;
-      if (existingStatus !== 'granted') {
-        const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-        finalStatus = status;
-      }
-      if (finalStatus !== 'granted') {
-        alert('Failed to get push token for push notification!');
-        return;
-      }
-      token = await Notifications.getExpoPushTokenAsync();
-      console.log(token);
-      this.setState({ expoPushToken: token });
-    } else {
-      alert('Must use physical device for Push Notifications');
-    }
-
-    if (Platform.OS === 'android') {
-      Notifications.createChannelAndroidAsync('default', {
-        name: 'default',
-        sound: true,
-        priority: 'max',
-        vibrate: [0, 250, 250, 250],
+export default function Push() {
+  //Exectute at the launch of app for ios
+  useEffect(() => {
+    Permissions.getAsync(Permissions.NOTIFICATIONS)
+      .then((statusObj) => {
+        if (statusObj.status !== 'granted') {
+          return Permissions.askAsync(Permissions.NOTIFICATIONS);
+        }
+        return statusObj;
+      }).then(statusObj => {
+        if (statusObj.status !== 'granted') {
+          alert('Notifications will be unavailable now');
+          return;
+        }
       });
+  }, []);
+
+  useEffect(() => {
+    //When app is closed
+    const backgroundSubscription = Notification.addNotificationResponseReceivedListener(response => {
+      console.log(response);
+    });
+    //When the app is open
+    const foregroundSubscription = Notification.addNotificationReceivedListener(notification => {
+      console.log(notification);
+    });
+
+    return () => {
+      backgroundSubscription.remove();
+      foregroundSubscription.remove();
     }
-  };
+  }, []);
+  //=======================================================
 
-  componentDidMount() {
-    this.registerForPushNotificationsAsync();
-    this._notificationSubscription = Notifications.addListener(this._handleNotification);
+  //Trigger Function Called by click of the button to
+  //trigger notification
+
+  //=======================================================
+  const triggerNotification = () => {
+    Notification.scheduleNotificationAsync({
+      content: {
+        title: "My First Notification",
+        body: "Local Notification to be sent"
+      },
+      trigger: {
+        seconds: 10
+      }
+    });
   }
-
-  _handleNotification = notification => {
-    Vibration.vibrate();
-    console.log(notification);
-    this.setState({ notification: notification });
-  };
-
-  render() {
-    return (
-      <View
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'space-around',
-        }}>
-        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-          <Text>Origin: {this.state.notification.origin}</Text>
-          <Text>Data: {JSON.stringify(this.state.notification.data)}</Text>
-        </View>
-        <Button title={'Press to Send Notification'} onPress={() => this.sendPushNotification()} />
-      </View>
-    );
-  }
+  return (
+    <View style={styles.container}>
+      <Button title="Send Notification" onPress={triggerNotification} />
+      <StatusBar style="auto" />
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

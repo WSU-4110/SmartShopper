@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import { ForceTouchGestureHandler } from "react-native-gesture-handler";
 import CustomButton from "../App code/CustomButton"; //needed library for custom buttons to work
 import Add from "../App/components/AddDelete.js";
+import Push from "../App/components/Push.js";
+
 
 export default function Home({ navigation }) {
   const pressHandler = () => {
@@ -14,6 +16,7 @@ export default function Home({ navigation }) {
   const pressHandler2 = () => {
     navigation.navigate("History");
   };
+
   return (
     <View style={title.background}>
       <Text style={title.ShopperTitle}>Smart Shopper</Text>
