@@ -1,5 +1,6 @@
 import React from "react";
-import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { ScrollView, Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+//import Items from "../components/Items.js";
 import Constants from "expo-constants";
 
 import * as SQLite from "expo-sqlite";
