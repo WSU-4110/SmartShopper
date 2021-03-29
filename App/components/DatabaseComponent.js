@@ -56,11 +56,11 @@ export default class DataBaseComponent extends React.Component {
   }
 }
 
-// this sorts the date in a decending order
+// this is suppose to sorts the date in a decending order but it can delete
 const sortByDate = () => {
   db.transaction((tx) => {
-    tx.executeSql("SELECT * FROM items ORDER BY price");
-    //tx.executeSql("DELETE FROM items");
+    //tx.executeSql("SELECT * FROM items ORDER BY price");
+    tx.executeSql("DELETE FROM items");
   });
 };
 
