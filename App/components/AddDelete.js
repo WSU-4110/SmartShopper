@@ -26,6 +26,11 @@ export default function AddDelete() {
   var db = new DataBaseComponent();
   var hdb = new HistoryDataBase();
 
+  //FOR INSTRUCTORS
+  //HERE WE HAVE THE INSTANCE OF THE DATABASE. THIS IS A SINGLE INSTANCE THAT THE DATA HAS TO GO THROUGH IN ORDER TO BE ADDED OR DELETED.
+  //THIS SINGLE DATABASE INSTANCE ACTS AS THE SINGLETON OBJECTS THAT HANDLES THE DATABASE CONNECTION.
+  // var singletonDB = new DBconnection
+
   const [visible, setVisible] = useState(false); //visible state that the Add component uses to switch between visible and invisible. True for visible, false otherwise
 
   const [saveVisible, setSaveVisible] = useState(false); //visible state that the Save component uses to switch between visible and invisible. True for visible, false otherwise
@@ -73,6 +78,13 @@ export default function AddDelete() {
     todos.map((todos) => {
       hdb.add(todos.text, todos.exp, todos.price);
     });
+
+    //adding to our singleton database
+    //HERE IS AN EXAMPLE OF THE SINGLETON OBJECT WORKING WITH THE DATA TO BE ENTERED INTO THE DATABASE.
+    //THIS SINGLE INSTANCE IS ONLY CREATED ONCE, AS WE ONLY NEED ONE CONNECTION TO ONE DATABASE.
+    // todos.map((todos) => {
+    //   singleton.add(todos.text, todos.exp, todos.price);
+    // });
   };
 
   return (
