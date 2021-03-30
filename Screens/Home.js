@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React, { Component} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity,Button } from 'react-native';
 import CustomButton from '../App code/CustomButton';//needed library for custom buttons to work
@@ -40,3 +41,30 @@ export default function Home({navigation}) {
           padding:20
       }
       });
+=======
+import CustomButton from "../App code/CustomButton"; //needed library for custom buttons to work
+
+
+export default function Home({ navigation }) {
+  const pressHandlerCreateList = () => {
+    navigation.navigate("Add");
+  };
+  const pressHandlerExperation = () => {
+    navigation.navigate("Expiration");
+  };
+  const pressHandlerHistory = () => {
+    navigation.navigate("History");
+  };
+  return (
+    <View style={title.background}>
+      <Text style={title.ShopperTitle}>Smart Shopper</Text>
+      <View style={title.allignButton}>
+        <CustomButton text="Create Lists" onPress={pressHandlerCreateList} color="black" />
+        <CustomButton text="Expiration" onPress={pressHandlerExperation} color="black" />
+        <CustomButton text="History" onPress={pressHandlerHistory} color="black" />
+      </View>
+    </View>
+  );
+}
+
+>>>>>>> Stashed changes

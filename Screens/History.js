@@ -25,6 +25,7 @@ export default function History() {
     </View>
   );
 }
+<<<<<<< Updated upstream
 
 const styles = StyleSheet.create({
   container: {
@@ -55,3 +56,5 @@ const styles = StyleSheet.create({
     textAlign:'center',
   }
 });
+=======
+>>>>>>> Stashed changes
