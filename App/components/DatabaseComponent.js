@@ -1,0 +1,182 @@
+import React from "react";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from "react-native";
+import Constants from "expo-constants";
+import { FlatList, ForceTouchGestureHandler, TouchableHighlight } from "react-native-gesture-handler";
+import * as SQLite from "expo-sqlite";
+import CustomButton from "../../App code/CustomButton";
+import { Button } from "react-native";
+const db = SQLite.openDatabase("grocery_Items.db");
+
+class Items extends React.Component 
+{
+  state = {
+    items: null,
+  };
+
+  componentDidMount() {
+    this.update();
+  }
+
+  render() {
+    const { items } = this.state;
+
+    if (items === null || items.length === 0) {
+      return null;
+
+    }
+  
+//Function to allow user to check off items they own ( still need to figure out how to incorporate it as a pressable button)
+ const NO_SPACE = '​';
+ const highlight = string =>
+  string.split(' ').map((letter, i) => (
+    <Text key={i}>
+      <Text style={styles.itemChecked}>{letter} </Text>
+      {NO_SPACE}
+    </Text>
+  ));
+
+
+    return (
+      <View style={styles.sectionContainer}>
+        
+        {/* Map loop to iterate through the database and show them in a Text component */}
+        {items.map(({ id, name, expirationDate, price }) => (
+          <TouchableOpacity key={id}  >
+            {/* These are the values coming from the database */}
+            <Text style={styles.itemTextName}>{highlight(name)}</Text>
+            <Text style={styles.itemText}>
+              Expires on: <Text style={styles.bold}>{expirationDate}</Text>
+            </Text>
+            <Text style={styles.itemText}>
+              Cost: <Text style={styles.bold}>{price}</Text>
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+    );
+  }
+
+
+  //retrieving everything from the database, then putting them into an array and storing it in the state
+  update() {
+    db.transaction((tx) => {
+      tx.executeSql(`select * from items;`, [], (_, { rows: { _array } }) =>
+        this.setState({ items: _array })
+      );
+    });
+  }
+}
+
+export default class DataBaseComponent extends React.Component {
+  state = {
+    name: null,
+  };
+
+  //if there is not a table in the database, then create one
+  componentDidMount() {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "create table if not exists items (id integer primary key not null, name text, expirationDate text, price text);"
+      );
+    });
+  }
+
+  //adding the items to the database
+  add(name, expirationDate, price) {
+    // is name empty?
+    if (name === null || name === "") {
+      return false;
+    }
+
+    //attributes line up with the quesiton marks in the corresponding order
+    db.transaction((tx) => {
+      tx.executeSql(
+        "insert into items (name, expirationDate, price) values (?, ?, ?)",
+        [name, expirationDate, price]
+      );
+      tx.executeSql("select * from items", [], (_, { rows }) =>
+        console.log(JSON.stringify(rows))
+      );
+    }, null);
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.heading}>My List</Text>
+        <Text style={{ textAlign: "center", marginBottom: 30, color: "coral" }}>
+          This is your current working shopping list!
+        </Text>
+        <View style={styles.flexRow}></View>
+        <ScrollView style={styles.listArea}>
+        <Items />
+        </ScrollView>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  bold: {
+    fontWeight: "bold",
+  },
+  container: {
+    backgroundColor: "#252525",
+    flex: 1,
+    paddingTop: Constants.statusBarHeight,
+  },
+  heading: {
+    fontSize: 26,
+    fontWeight: "bold",
+    textAlign: "center",
+    paddingBottom: 30,
+    color: "coral",
+  },
+  itemcontainer: {
+    backgroundColor:"#252525",
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10,
+  },
+  itemcontainerSEL: {
+    backgroundColor:"red",
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10,
+  },  
+
+  itemText: {
+    color: "lightgrey",
+    marginBottom: 5,
+  },
+  itemTextName: {
+    color: "lightgrey",
+    fontWeight: "bold",
+    fontSize: 25,
+    marginBottom: 5,
+  },
+
+  flexRow: {
+    flexDirection: "row",
+  },
+
+  listArea: {
+    backgroundColor: "#1f1f1f",
+    flex: 1,
+    paddingTop: 16,
+  },
+  sectionContainer: {
+    marginBottom: 16,
+    marginHorizontal: 16,
+  },
+  itemChecked: {
+    backgroundColor: 'coral',
+    color:'black',
+  }
+});
