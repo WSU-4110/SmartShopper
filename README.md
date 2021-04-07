@@ -50,3 +50,8 @@ expo install react-native-gesture-handler react-native-reanimated
 npm install react-navigation-stack @react-native-community/masked-view react-native-safe-area-context
 expo install expo-sqlite
 ```
+
+
+
+notifications
+expo install expo-notifications

@@ -5,8 +5,14 @@ import {
   Text,
   View,
   TouchableOpacity,
+  TextInput,
+  FlatList
 } from "react-native";
 import Constants from "expo-constants";
+import * as Animatable from "react-native-animatable";
+import Icon from "react-native-vector-icons/Ionicons";
+import { MaterialIcons } from "@expo/vector-icons";
+
 
 import * as SQLite from "expo-sqlite";
 
@@ -28,13 +34,36 @@ class Items extends React.Component {
       return null;
     }
 
+    {/*Displaying database on the page */}
     return (
       <View style={styles.sectionContainer}>
         {/* Map loop to iterate through the database and show them in a Text component */}
+        <View style={styles.header}>
+          {/*Header animations */}
+          <Animatable.View animation="slideInRight" duration={1000} style={{ height: 150, justifyContent: "center", paddingHorizontal: 5 }}>
+            {/*Search bar animations */}
+            <Animatable.View animation="slideInRight" duration={1000} style={{
+                height: 50,
+                marginTop: 0,
+                paddingVertical: 20,
+                backgroundColor: "white",
+                flexDirection: "row",
+                padding: 5,
+                alignItems: "center",
+                flex: 0.3,
+              }}
+            >
+              <Animatable.View animation="fadeInRight">
+                <Icon name="ios-search" style={{ fontSize: 12 }} />
+              </Animatable.View>
+              <TextInput placeholder="Tap to Search" style={{ fontSize: 15, marginLeft: 15, flex: 1 }} />
+            </Animatable.View>
+          </Animatable.View>
+        </View>
+
         {items.map(({ id, name, expirationDate, price }) => (
           <TouchableOpacity key={id} style={styles.itemcontainer}>
-            {/* These are the values coming from the database */}
-
+            {/* These are the values coming from the database*/}
             <Text style={styles.itemTextName}>{name}</Text>
             <Text style={styles.itemText}>
               Expires on: <Text style={styles.bold}>{expirationDate}</Text>
@@ -44,6 +73,8 @@ class Items extends React.Component {
             </Text>
           </TouchableOpacity>
         ))}
+
+
       </View>
     );
   }
@@ -79,7 +110,7 @@ export default class DataBaseComponent extends React.Component {
       return false;
     }
 
-    //attributes line up with the quesiton marks in the corresponding order
+    //attributes line up with the question marks in the corresponding order
     db.transaction((tx) => {
       tx.executeSql(
         "insert into items (name, expirationDate, price) values (?, ?, ?)",
@@ -94,10 +125,7 @@ export default class DataBaseComponent extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.heading}>My List</Text>
-        <Text style={{ textAlign: "center", marginBottom: 30, color: "coral" }}>
-          This is your current working shopping list!
-        </Text>
+        
         <View style={styles.flexRow}></View>
         <ScrollView style={styles.listArea}>
           <Items />

@@ -16,6 +16,10 @@ export default function Home({ navigation }) {
   const pressHandler2 = () => {
     navigation.navigate("History");
   };
+  const pressHandler3 = () => {
+    navigation.navigate("Push");
+  };
+
 
   return (
     <View style={title.background}>
@@ -24,10 +28,14 @@ export default function Home({ navigation }) {
         <CustomButton text="Create Lists" onPress={pressHandler} color="black" />
         <CustomButton text="Expiration" onPress={pressHandler1} color="black" />
         <CustomButton text="History" onPress={pressHandler2} color="black" />
+        <CustomButton text="Push" onPress={pressHandler3} color="black"/>
+
       </View>
     </View>
   );
 }
+
+
 
 const title = StyleSheet.create({
   background: {
