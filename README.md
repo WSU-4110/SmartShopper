@@ -17,11 +17,10 @@ It is mostly CSS work which can be found in the header container.
 ## Push Notifications
 
 #### Installation
-'''bash
+``` bash
 expo install expo-notifications
 expo install expo-constants
-'''
-The necessary imports
+```The necessary imports
 
 ``` bash
 import React from 'react';
@@ -34,8 +33,8 @@ import * as Notifications from 'expo-notifications';
 There are a few things that you need to do in order to run a notification. The first is to create an expo account at 'https://expo.io', make a project and name it 'smartshopper' in the slug section, change the device token in your code editor, and lastly log into expo through the terminal through 'expo login'
 
 For YOUR_PUSH_TOKEN, change it to your device token when you click the push button. Once you click on the push button, your device token will pop up in the terminal and that is what you can change it to.
-'''bash
- sendPushNotification = async () => {
+``` bash
+sendPushNotification = async () => {
     const YOUR_PUSH_TOKEN = 'put your device token here';
     const message = {
       to: "ExponentPushToken[" + YOUR_PUSH_TOKEN +"]",
@@ -45,17 +44,15 @@ For YOUR_PUSH_TOKEN, change it to your device token when you click the push butt
       data: { data: 'goes here' },
       _displayInForeground: true,
     };
-'''
-
+```
 A possible error when trying to get a push notification is not commenting out
 the line 'this._notificationSubscription. It throws an error in expo.
-'''bash
+``` bash
 componentDidMount() {
     this.registerForPushNotificationsAsync();
     //this._notificationSubscription = Notifications.addListener(this._handleNotification);
   }
-'''
-
+```
 **An easy to use shopping app, designed to help shoppers at the grocery store.**
 
 Progress: Add items implementation.
