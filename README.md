@@ -4,17 +4,13 @@
 
 #### Installation
 
-The necessary imports in AddDelete.js
-
 ``` bash
-import Icon from 'react-native-vector-icons/Ionicons';
-import { FlatList} from "react-native";
+
 ```
 
-No npm installation necessary. The search bar revolves around Animatable.View animation, that gives it some of the movements on the screen.
-It is mostly CSS work which can be found in the header container.
-
 ## Push Notifications
+
+Push.js
 
 #### Installation
 ``` bash
