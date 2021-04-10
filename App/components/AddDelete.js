@@ -76,27 +76,30 @@ export default function AddDelete() {
         <View style={styles.header}>
           <Animatable.View animation="slideInRight" duration={1000} style={{ height: 150, justifyContent: "center", paddingHorizontal: 5 }}>
             <Text style={styles.headerText}> Create Your List </Text>
+            <Animatable.View animation="slideInRight" duration={1500}>
+              {/**Add "+" button */}
+              <TouchableOpacity
+                style={styles.addButton}
+                onPress={() => {
+                  setVisible(true);
+                }}
+              >
+                <MaterialIcons name="add-shopping-cart" size={30} color="white" />
+              </TouchableOpacity>
+            </Animatable.View>
 
-            <Animatable.View
-              animation="slideInRight"
-              duration={1000}
-              style={{
-                height: 50,
-                marginTop: 0,
-                paddingVertical: 20,
-                backgroundColor: "white",
-                flexDirection: "row",
-                padding: 5,
-                alignItems: "center",
-                flex: 0.3,
+            {/**Save "SAVE" button
+             * This button saves the whole list into the database
+             */}
+            <TouchableOpacity
+              style={styles.saveButton}
+              onPress={() => {
+                setSaveVisible(true);
               }}
             >
-              <Animatable.View animation="fadeInRight">
-                <Icon name="ios-search" style={{ fontSize: 12 }} />
-              </Animatable.View>
-              <TextInput placeholder="Tap to Search" style={{ fontSize: 15, marginLeft: 15, flex: 1 }} />
+              <MaterialIcons name="save-alt" size={28} color="white" />
+            </TouchableOpacity>
             </Animatable.View>
-          </Animatable.View>
         </View>
         {/**Container containing the list and the add list item window */}
         <View style={styles.content}>
@@ -143,27 +146,7 @@ export default function AddDelete() {
         </View>
         {/**Footer View */}
         <View style={styles.footer}></View>
-        {/**Add "+" button */}
-        <TouchableOpacity
-          style={styles.addButton}
-          onPress={() => {
-            setVisible(true);
-          }}
-        >
-          <MaterialIcons name="add-shopping-cart" size={30} color="white" />
-        </TouchableOpacity>
-
-        {/**Save "SAVE" button
-         * This button saves the whole list into the database
-         */}
-        <TouchableOpacity
-          style={styles.saveButton}
-          onPress={() => {
-            setSaveVisible(true);
-          }}
-        >
-          <MaterialIcons name="save-alt" size={28} color="white" />
-        </TouchableOpacity>
+       
       </View>
     </TouchableWithoutFeedback>
   );
@@ -192,22 +175,25 @@ const styles = StyleSheet.create({
     //padding: 20,  //padding if there is no footer
     backgroundColor: "#1f1f1f",
   },
+
   header: {
     backgroundColor: "#252525",
     alignItems: "center",
     justifyContent: "center",
+    height: 100
   },
+
   headerText: {
-    height: 10,
-    //marginTop: -20,
+    height: 40,
+    marginTop: -25,
     color: "white",
     //fontSize: 18,
-    marginTop: 10,
     fontSize: 25,
     padding: 26,
     fontWeight: "bold",
     color: "coral",
   },
+
   footer: {
     position: "absolute",
     backgroundColor: "#222222",
@@ -220,16 +206,15 @@ const styles = StyleSheet.create({
   addButton: {
     position: "absolute", //fixed at a certain part of the screen
     zIndex: 11, //added z index of 11 so it is displayed on the top of all of the other components
-    right: 20, //we added rigth and bottom because we want the button to be on the bottom right of the screen
-    bottom: 100,
+    left: -50, //we added rigth and bottom because we want the button to be on the bottom right of the screen
+    bottom: -20,
     backgroundColor: "coral",
-    width: 70, //width and height of the circle
-    height: 70,
+    width: 55, //width and height of the circle
+    height: 55,
     borderRadius: 50,
     alignItems: "center",
     justifyContent: "center", //aligning the items in the center of the circle
     elevation: 8,
-
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -242,13 +227,13 @@ const styles = StyleSheet.create({
   },
 
   saveButton: {
-    position: "absolute", //fixed at a cetain part of the screen
+    position: "absolute", //fixed at a certain part of the screen
     zIndex: 11, //added z index of 11 so it is displayed on the top of all of the other components
-    right: 20, //we added rigth and bottom because we want the button to be on the bottom right of the screen
-    bottom: 200,
+    right: -50, //we added rigth and bottom because we want the button to be on the bottom right of the screen
+    bottom: 40,
     backgroundColor: "coral",
-    width: 70, //width and height of the circle
-    height: 70,
+    width: 55, //width and height of the circle
+    height: 55,
     borderRadius: 50,
     alignItems: "center",
     justifyContent: "center", //aligning the items in the center of the circle
@@ -312,6 +297,7 @@ const styles = StyleSheet.create({
   addContainer: {
     backgroundColor: "black",
   },
+
   listItems: {
     height: 700,
     paddingLeft: 3,

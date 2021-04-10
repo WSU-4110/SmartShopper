@@ -38,30 +38,8 @@ class Items extends React.Component {
     return (
       <View style={styles.sectionContainer}>
         {/* Map loop to iterate through the database and show them in a Text component */}
-        <View style={styles.header}>
-          {/*Header animations */}
-          <Animatable.View animation="slideInRight" duration={1000} style={{ height: 150, justifyContent: "center", paddingHorizontal: 5 }}>
-            {/*Search bar animations */}
-            <Animatable.View animation="slideInRight" duration={1000} style={{
-                height: 50,
-                marginTop: 0,
-                paddingVertical: 20,
-                backgroundColor: "white",
-                flexDirection: "row",
-                padding: 5,
-                alignItems: "center",
-                flex: 0.3,
-              }}
-            >
-              <Animatable.View animation="fadeInRight">
-                <Icon name="ios-search" style={{ fontSize: 12 }} />
-              </Animatable.View>
-              <TextInput placeholder="Tap to Search" style={{ fontSize: 15, marginLeft: 15, flex: 1 }} />
-            </Animatable.View>
-          </Animatable.View>
-        </View>
-
-        {items.map(({ id, name, expirationDate, price }) => (
+        <View>
+          {items.map(({ id, name, expirationDate, price }) => (
           <TouchableOpacity key={id} style={styles.itemcontainer}>
             {/* These are the values coming from the database*/}
             <Text style={styles.itemTextName}>{name}</Text>
@@ -73,8 +51,7 @@ class Items extends React.Component {
             </Text>
           </TouchableOpacity>
         ))}
-
-
+        </View>
       </View>
     );
   }
@@ -125,7 +102,27 @@ export default class DataBaseComponent extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        
+        <Animatable.View animation="slideInRight" duration={1500} style={{ height: 100, justifyContent: "center", paddingHorizontal: 5 }}>
+                  <Text style={styles.headerText}> Your Saved List</Text>
+
+                  {/*Search bar animations */}
+                  <Animatable.View animation="slideInRight" duration={1000} style={{
+                      height: 10,
+                      marginTop: 10,
+                      paddingVertical: 0,
+                      backgroundColor: "white",
+                      flexDirection: "row",
+                      padding: 5,
+                      alignItems: "center",
+                      flex: 0.3,
+                    }}
+                  >
+                    <Animatable.View animation="fadeInRight">
+                      <Icon name="ios-search" style={{ fontSize: 12 }} />
+                    </Animatable.View>
+                    <TextInput placeholder="Tap to Search" style={{ fontSize: 15, marginLeft: 15, flex: 1 }} />
+                  </Animatable.View>
+                </Animatable.View>
         <View style={styles.flexRow}></View>
         <ScrollView style={styles.listArea}>
           <Items />
@@ -139,11 +136,25 @@ const styles = StyleSheet.create({
   bold: {
     fontWeight: "bold",
   },
+
+  /*little sliver of space right below the white status bar*/
   container: {
     backgroundColor: "#252525",
+    height: 100,
+    marginTop: -10,
     flex: 1,
     paddingTop: Constants.statusBarHeight,
   },
+
+  top: {
+    backgroundColor: "#252525",
+    alignItems: "center",
+    justifyContent: "center",
+    height: 100,
+    marginBottom: 15,
+    zIndex: 1,
+  },
+
   heading: {
     fontSize: 26,
     fontWeight: "bold",
@@ -151,6 +162,26 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
     color: "coral",
   },
+
+  header: {
+    backgroundColor: "#252525",
+    alignItems: "center",
+    justifyContent: "center",
+    height: 100,
+    marginBottom: 15,
+  },
+
+  headerText: {
+    height: 40,
+    marginTop: -50,
+    fontSize: 25,
+    padding: 26,
+    fontWeight: "bold",
+    color: "coral",
+    marginLeft: 55,
+    //zIndex: 1,
+  },
+
   itemcontainer: {
     backgroundColor: "#252525",
     borderRadius: 5,
@@ -180,5 +211,6 @@ const styles = StyleSheet.create({
   sectionContainer: {
     marginBottom: 16,
     marginHorizontal: 16,
+    
   },
 });
