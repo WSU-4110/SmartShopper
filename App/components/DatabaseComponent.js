@@ -15,12 +15,29 @@ const db = SQLite.openDatabase("grocery_Items.db");
 
 class Items extends React.Component 
 {
-  state = {
+  constructor() {
+  super();
+  this.state = {
     items: null,
-  };
+    ColorHolder: "#252525",
+  }};
 
   componentDidMount() {
     this.update();
+  }
+
+ markItemOwned=()=>{
+    if(this.state.ColorHolder != "coral"){
+      
+      this.setState({
+        ColorHolder: "coral"
+      })
+    }
+    else{
+      this.setState({
+        ColorHolder: "#252525"
+      })
+    }
   }
 
   render() {
@@ -30,26 +47,14 @@ class Items extends React.Component
       return null;
 
     }
-  
-//Function to allow user to check off items they own ( still need to figure out how to incorporate it as a pressable button)
- const NO_SPACE = '​';
- const highlight = string =>
-  string.split(' ').map((letter, i) => (
-    <Text key={i}>
-      <Text style={styles.itemChecked}>{letter} </Text>
-      {NO_SPACE}
-    </Text>
-  ));
-
 
     return (
       <View style={styles.sectionContainer}>
-        
         {/* Map loop to iterate through the database and show them in a Text component */}
         {items.map(({ id, name, expirationDate, price }) => (
-          <TouchableOpacity key={id}  >
+          <TouchableOpacity key={id} style={styles.itemcontainer,{backgroundColor: this.state.ColorHolder}} onPress={this.markItemOwned}>
             {/* These are the values coming from the database */}
-            <Text style={styles.itemTextName}>{highlight(name)}</Text>
+            <Text style={styles.itemTextName}>{name}</Text>
             <Text style={styles.itemText}>
               Expires on: <Text style={styles.bold}>{expirationDate}</Text>
             </Text>
@@ -143,14 +148,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     marginBottom: 10,
-  },
-  itemcontainerSEL: {
-    backgroundColor:"red",
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
-  },  
-
+  }, 
   itemText: {
     color: "lightgrey",
     marginBottom: 5,
@@ -177,6 +175,6 @@ const styles = StyleSheet.create({
   },
   itemChecked: {
     backgroundColor: 'coral',
-    color:'black',
+    color:'lightgrey',
   }
 });
