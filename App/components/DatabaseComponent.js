@@ -42,10 +42,10 @@ export default class DataBaseComponent extends React.Component {
         <TouchableOpacity
           style={styles.sortBtn}
           onPress={() => {
-            sortByDate();
+            deleteFromDB();
           }}
         >
-          <Image source={require("./../../assets/sort.png")} style={styles.btnImage} />
+          <Image source={require("./../../assets/del.webp")} style={styles.btnImage} />
         </TouchableOpacity>
 
         <View style={styles.flexRow}></View>
@@ -58,9 +58,8 @@ export default class DataBaseComponent extends React.Component {
 }
 
 // this is suppose to sorts the date in a decending order but it can delete
-const sortByDate = () => {
+const deleteFromDB = () => {
   db.transaction((tx) => {
-    //tx.executeSql("SELECT * FROM items ORDER BY price");
     tx.executeSql("DELETE FROM items");
   });
 };
