@@ -178,7 +178,8 @@ const styles = StyleSheet.create({
     padding: 26,
     fontWeight: "bold",
     color: "coral",
-    marginLeft: 55,
+    //marginLeft: 55,
+    textAlign: "center",
     //zIndex: 1,
   },
 
