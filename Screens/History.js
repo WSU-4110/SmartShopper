@@ -3,7 +3,7 @@ import { ScrollView, Image, StyleSheet, Text, View, TouchableOpacity } from "rea
 import Constants from "expo-constants";
 import * as SQLite from "expo-sqlite";
 
-const hdb = SQLite.openDatabase("historyitems.db");
+const hdb = SQLite.openDatabase("HistoryItems.db");
 
 class HistoryItems extends React.Component {
   state = {
