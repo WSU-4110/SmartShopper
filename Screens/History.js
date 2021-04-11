@@ -71,7 +71,7 @@ export default class HistoryDataBase extends React.Component {
   componentDidMount() {
     hdb.transaction((tx) => {
       tx.executeSql(
-        "create table if not exists historyitems (id integer primary key not null, name text, expirationDate text, price text, reuse boolean);"
+        "create table if not exists historyitems (id integer primary key not null, name text, expirationDate text, price text);"
       );
     });
   }
