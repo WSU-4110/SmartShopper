@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  Text,
-  StyleSheet,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import { Text, StyleSheet, View, TextInput, TouchableOpacity } from "react-native";
 
 export default function Add({ submitHandler, visibleToggleMain }) {
   [text, setText] = useState("");
@@ -57,7 +51,7 @@ export default function Add({ submitHandler, visibleToggleMain }) {
         color="white"
         placeholderTextColor="#5c5c5c"
         style={styles.input}
-        placeholder="Exp: MM/DD/YYY"
+        placeholder="Exp: MM/DD/YYYY"
         onChangeText={changeHandler3}
         value={exp}
       />

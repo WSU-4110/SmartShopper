@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
+import { ForceTouchGestureHandler } from "react-native-gesture-handler";
 import CustomButton from "../App code/CustomButton"; //needed library for custom buttons to work
-import AddDelete from "../App/components/AddDelete.js";
+import Add from "../App/components/AddDelete.js";
 
 export default function Home({ navigation }) {
   const pressHandler = () => {
-    navigation.navigate("AddDelete");
+    navigation.navigate("Add");
   };
   const pressHandler1 = () => {
-    navigation.navigate("Experation");
+    navigation.navigate("Expiration");
   };
   const pressHandler2 = () => {
     navigation.navigate("History");
@@ -16,10 +17,10 @@ export default function Home({ navigation }) {
   return (
     <View style={title.background}>
       <Text style={title.ShopperTitle}>Smart Shopper</Text>
-      <View>
-        <Button title="Create Lists" onPress={pressHandler} color="coral" />
-        <Button title="Experation" onPress={pressHandler1} color="coral" />
-        <Button title="History" onPress={pressHandler2} color="coral" />
+      <View style={title.allignButton}>
+        <CustomButton text="Create Lists" onPress={pressHandler} color="black" />
+        <CustomButton text="Expiration" onPress={pressHandler1} color="black" />
+        <CustomButton text="History" onPress={pressHandler2} color="black" />
       </View>
     </View>
   );
@@ -27,16 +28,21 @@ export default function Home({ navigation }) {
 
 const title = StyleSheet.create({
   background: {
-    backgroundColor: "#1f1f1f",
+    backgroundColor: "coral",
     height: "100%",
     width: "100%",
   },
   ShopperTitle: {
-    marginTop: 15,
+    marginTop: 25,
     textAlign: "center",
-    fontSize: 35,
+    fontSize: 40,
     color: "white",
-    padding: 20,
-    fontWeight: "bold",
+    padding: 25,
+  },
+  allignButton: {
+    marginLeft: -10,
+    marginRight: -10,
+    padding: 10,
+    justifyContent: "center",
   },
 });

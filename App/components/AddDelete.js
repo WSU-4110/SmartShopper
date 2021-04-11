@@ -1,16 +1,10 @@
 import React, { useState } from "react";
-import {
-  Alert,
-  Keyboard,
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Alert, Keyboard, FlatList, StyleSheet, Text, TouchableWithoutFeedback, TouchableOpacity, View, TextInput } from "react-native";
 import Items from "../components/Items.js";
 import Add from "../components/Add.js";
+import Icon from "react-native-vector-icons/Ionicons";
+import * as Animatable from "react-native-animatable";
+import { ListItem } from "react-native-elements";
 import DataBaseComponent from "../components/DatabaseComponent.js";
 import HistoryDataBase from "../../Screens/History.js";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -19,7 +13,11 @@ import Recommend from "../components/recommend.js";
 
 export default function AddDelete() {
   const [todos, setTodos] = useState([
-    { text: "Ice Cream", exp: "02 / 12 / 2021", price: "2", key: "1" },
+
+    // { text: "Milk", exp: "02 / 12 / 2021", price: "2", key: "1" },
+    // { text: "Egg", exp: "02 / 22 / 2021", price: "3", key: "2" },
+    // { text: "Bread", exp: "02 / 17 / 2021", price: "5", key: "3" },
+
   ]);
 
   //database instance
@@ -45,21 +43,14 @@ export default function AddDelete() {
   // Input length checker (must be > 1)
   const submitHandler = (text, price, exp) => {
     if (isNaN(price)) {
-      Alert.alert("Alert!", "Price must be a number", [
-        { text: "OK", onPress: () => console.log("alert closed") },
-      ]);
+      Alert.alert("Alert!", "Price must be a number", [{ text: "OK", onPress: () => console.log("alert closed") }]);
     } else if (text.length > 1) {
       setTodos((prevTodos) => {
         setVisible(false);
-        return [
-          { text, price, exp, key: Math.random().toString() },
-          ...prevTodos,
-        ];
+        return [{ text, price, exp, key: Math.random().toString() }, ...prevTodos];
       });
     } else {
-      Alert.alert("Alert!", "Input must be over 1 character long", [
-        { text: "OK", onPress: () => console.log("alert closed") },
-      ]);
+      Alert.alert("Alert!", "Input must be over 1 character long", [{ text: "OK", onPress: () => console.log("alert closed") }]);
     }
   };
 
@@ -86,8 +77,32 @@ export default function AddDelete() {
       {/**Content container */}
       <View style={styles.container}>
         {/**Header container */}
+        {/**Animatable.View is incorporated to give animation to the search bar coming into view*/}
+        {/**Icon is used to add an icon in the search bar*/}
         <View style={styles.header}>
-          <Text style={styles.headerText}> Create Your List </Text>
+          <Animatable.View animation="slideInRight" duration={1000} style={{ height: 150, justifyContent: "center", paddingHorizontal: 5 }}>
+            <Text style={styles.headerText}> Create Your List </Text>
+
+            <Animatable.View
+              animation="slideInRight"
+              duration={1000}
+              style={{
+                height: 50,
+                marginTop: 0,
+                paddingVertical: 20,
+                backgroundColor: "white",
+                flexDirection: "row",
+                padding: 5,
+                alignItems: "center",
+                flex: 0.3,
+              }}
+            >
+              <Animatable.View animation="fadeInRight">
+                <Icon name="ios-search" style={{ fontSize: 12 }} />
+              </Animatable.View>
+              <TextInput placeholder="Tap to Search" style={{ fontSize: 15, marginLeft: 15, flex: 1 }} />
+            </Animatable.View>
+          </Animatable.View>
         </View>
         {/**Container containing the list and the add list item window */}
         <View style={styles.content}>
@@ -96,21 +111,14 @@ export default function AddDelete() {
           {/**{visible ? (If visible is true, do this command) : (if it is not true, do this command)} */}
 
           {/**Passing functions submitHandler and visibleToggleMain to the add component so they can be used outside of AddDelete*/}
-          {visible ? (
-            <Add
-              style={styles.addContainer}
-              submitHandler={submitHandler}
-              visibleToggleMain={visibleToggleMain}
-            />
-          ) : null}
+          {visible ? <Add style={styles.addContainer} submitHandler={submitHandler} visibleToggleMain={visibleToggleMain} /> : null}
           {/* ///////////////////////////////////////////////////////////////////////// */}
 
           {saveVisible ? (
             <View style={styles.saveWindow}>
               <Text style={styles.saveTitle}>Are you sure?</Text>
               <Text style={styles.saveMessage}>
-                By pressing the "Save List" button, your list will be saved
-                under MyList. Your items will also be saved to History.
+                By pressing the "Save List" button, your list will be saved under MyList. Your items will also be saved to History.
               </Text>
 
               <TouchableOpacity
@@ -151,13 +159,7 @@ export default function AddDelete() {
           {/** List container*/}
           <View style={styles.list}>
             {/**Actual List */}
-            <FlatList
-              style={styles.listItems}
-              data={todos}
-              renderItem={({ item }) => (
-                <Items item={item} pressHandler={pressHandler} />
-              )}
-            />
+            <FlatList style={styles.listItems} data={todos} renderItem={({ item }) => <Items item={item} pressHandler={pressHandler} />} />
           </View>
         </View>
         {/**Footer View */}
@@ -223,7 +225,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   content: {
-    padding: 10,
+    padding: 10, //padding if the footer is present
+    //padding: 20,  //padding if there is no footer
     backgroundColor: "#1f1f1f",
   },
   header: {
@@ -232,6 +235,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   headerText: {
+    height: 10,
+    //marginTop: -20,
+    color: "white",
+    //fontSize: 18,
     marginTop: 10,
     fontSize: 25,
     padding: 26,
@@ -248,7 +255,7 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   addButton: {
-    position: "absolute", //fixed at a cetain part of the screen
+    position: "absolute", //fixed at a certain part of the screen
     zIndex: 11, //added z index of 11 so it is displayed on the top of all of the other components
     right: 20, //we added rigth and bottom because we want the button to be on the bottom right of the screen
     bottom: 100,
