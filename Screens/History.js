@@ -10,7 +10,7 @@ import Constants from "expo-constants";
 
 import * as SQLite from "expo-sqlite";
 
-const hdb = SQLite.openDatabase("historyitems.db");
+const hdb = SQLite.openDatabase("HistoryItems.db");
 
 class HistoryItems extends React.Component {
   state = {
@@ -71,7 +71,7 @@ export default class HistoryDataBase extends React.Component {
   componentDidMount() {
     hdb.transaction((tx) => {
       tx.executeSql(
-        "create table if not exists historyitems (id integer primary key not null, name text, expirationDate text, price text);"
+        "create table if not exists historyitems (id integer primary key not null, name text, expirationDate text, price text, reuse boolean);"
       );
     });
   }

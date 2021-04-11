@@ -1,16 +1,22 @@
 import React from "react";
 import { StyleSheet, View, Image, TouchableOpacity, Text } from "react-native";
-//pass in presshandler here
-export default function Items({ item }) {
+
+export default function MyListItems({ item }) {
   return (
     <View>
       <TouchableOpacity style={styles.itemBtn}>
-        <Text style={styles.item}>{item.text}</Text>
+        <Text style={styles.item}>
+          {item.id}
+          {item.name}
+        </Text>
         <Text style={styles.price}>
           Price: <Text style={styles.bold}>${item.price}</Text>
         </Text>
         <Text style={styles.exp}>
-          Exp: <Text style={styles.bold}>{item.exp}</Text>
+          Exp: <Text style={styles.bold}>{item.expirationDate}</Text>
+        </Text>
+        <Text style={styles.exp}>
+          Add?: {item.addIt ? <Text>True</Text> : <Text>False</Text>}
         </Text>
       </TouchableOpacity>
     </View>

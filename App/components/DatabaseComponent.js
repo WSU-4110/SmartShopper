@@ -10,7 +10,7 @@ import Constants from "expo-constants";
 
 import * as SQLite from "expo-sqlite";
 
-const db = SQLite.openDatabase("grocery_Items.db");
+const db = SQLite.openDatabase("Grocery_Items.db");
 
 class Items extends React.Component {
   state = {
@@ -67,7 +67,7 @@ export default class DataBaseComponent extends React.Component {
   componentDidMount() {
     db.transaction((tx) => {
       tx.executeSql(
-        "create table if not exists items (id integer primary key not null, name text, expirationDate text, price text);"
+        "create table if not exists items (id integer primary key not null, name text, expirationDate text, price text, reuse boolean);"
       );
     });
   }
