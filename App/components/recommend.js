@@ -52,17 +52,6 @@ export default function Recommend({ submitHandler }) {
     });
   };
 
-  // const recycleWhenPressed2 = () => {
-  //   groceryItems.map((groceryItems) => {
-  //     if (groceryItems.name != null) {
-  //       submitHandler(
-  //         groceryItems.name,
-  //         groceryItems.price,
-  //         "to be determined"
-  //       );
-  //     }
-  //   });
-  // };
 
   return (
     <View style={styles.container}>
