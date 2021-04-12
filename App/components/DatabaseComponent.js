@@ -10,7 +10,7 @@ import Constants from "expo-constants";
 
 import * as SQLite from "expo-sqlite";
 
-const db = SQLite.openDatabase("grocery_Items.db");
+const db = SQLite.openDatabase("Grocery_Items.db");
 
 class Items extends React.Component {
   state = {
