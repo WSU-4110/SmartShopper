@@ -8,12 +8,16 @@ import { ListItem } from "react-native-elements";
 import DataBaseComponent from "../components/DatabaseComponent.js";
 import HistoryDataBase from "../../Screens/History.js";
 import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import Recommend from "../components/recommend.js";
 
 export default function AddDelete() {
   const [todos, setTodos] = useState([
+
     // { text: "Milk", exp: "02 / 12 / 2021", price: "2", key: "1" },
     // { text: "Egg", exp: "02 / 22 / 2021", price: "3", key: "2" },
     // { text: "Bread", exp: "02 / 17 / 2021", price: "5", key: "3" },
+
   ]);
 
   //database instance
@@ -23,6 +27,8 @@ export default function AddDelete() {
   const [visible, setVisible] = useState(false); //visible state that the Add component uses to switch between visible and invisible. True for visible, false otherwise
 
   const [saveVisible, setSaveVisible] = useState(false); //visible state that the Save component uses to switch between visible and invisible. True for visible, false otherwise
+
+  const [recommendVisible, setRecommendVisible] = useState(false); //visible state that the recommend component uses to switch between visible and invisible. True for visible, false otherwise
 
   //function to call the setVisible function in order to change the visible state contents
   const visibleToggleMain = () => {
@@ -138,6 +144,21 @@ export default function AddDelete() {
             </View>
           ) : null}
 
+          {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+          {recommendVisible ? (
+            <View style={styles.recommendWindow}>
+              <Recommend submitHandler={submitHandler} />
+              <TouchableOpacity
+                style={styles.recommendCancelBtn}
+                onPress={() => {
+                  setRecommendVisible(false);
+                }}
+              >
+                <Text style={styles.cancelBtnText}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
+          ) : null}
+          {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
           {/** List container*/}
           <View style={styles.list}>
             {/**Actual List */}
@@ -146,7 +167,6 @@ export default function AddDelete() {
         </View>
         {/**Footer View */}
         <View style={styles.footer}></View>
-       
       </View>
     </TouchableWithoutFeedback>
   );
@@ -154,7 +174,7 @@ export default function AddDelete() {
 
 const styles = StyleSheet.create({
   cancelBtn: {
-    marginTop: 10,
+    marginTop: 0,
     color: "coral",
     width: "100%", //width and height of the circle
     height: 50,
@@ -226,6 +246,64 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
 
+  recommendButton: {
+    position: "absolute", //fixed at a cetain part of the screen
+    zIndex: 11, //added z index of 11 so it is displayed on the top of all of the other components
+    right: 20, //we added rigth and bottom because we want the button to be on the bottom right of the screen
+    bottom: 300,
+    backgroundColor: "coral",
+    width: 70, //width and height of the circle
+    height: 70,
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center", //aligning the items in the center of the circle
+    elevation: 8,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
+
+    elevation: 8,
+  },
+  recommendCancelBtn: {
+    marginTop: -35,
+    color: "coral",
+    width: "100%", //width and height of the circle
+    height: 50,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "coral",
+    alignItems: "center",
+    justifyContent: "center", //aligning the items in the center of the circle
+  },
+  cancelBtnText: {
+    color: "coral",
+  },
+  recommendWindow: {
+    position: "absolute",
+    width: "90%",
+    margin: "5%",
+    top: -10,
+    right: 10,
+    zIndex: 11,
+    padding: 20,
+    height: 550,
+    borderRadius: 10,
+    backgroundColor: "#252525",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 12,
+    },
+    shadowOpacity: 0.58,
+    shadowRadius: 16.0,
+
+    elevation: 24,
+  },
   saveButton: {
     position: "absolute", //fixed at a certain part of the screen
     zIndex: 11, //added z index of 11 so it is displayed on the top of all of the other components

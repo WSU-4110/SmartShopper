@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Image, TouchableOpacity, Text } from "react-native";
-
+//pass in presshandler here
 export default function Items({ pressHandler, item }) {
   return (
     <View>
@@ -13,7 +13,7 @@ export default function Items({ pressHandler, item }) {
           Exp: <Text style={styles.bold}>{item.exp}</Text>
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity
+    <TouchableOpacity
         style={styles.delBtn}
         onPress={() => pressHandler(item.key)}
       >
