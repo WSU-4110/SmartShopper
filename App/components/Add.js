@@ -1,23 +1,25 @@
 import React, { useState } from "react";
-import {
-  Text,
-  StyleSheet,
-  View,
-  TextInput,
-  Button,
-  TouchableOpacity,
-} from "react-native";
+import { Text, StyleSheet, View, TextInput, TouchableOpacity } from "react-native";
 
 export default function Add({ submitHandler, visibleToggleMain }) {
   [text, setText] = useState("");
+  [price, setPrice] = useState("");
+  [exp, setExp] = useState("");
 
   const changeHandler = (val) => {
     setText(val);
   };
-
+  const changeHandler3 = (val) => {
+    setExp(val);
+  };
+  const changeHandler2 = (val) => {
+    setPrice(val);
+  };
   const pressHandler = () => {
-    submitHandler(text);
+    submitHandler(text, price, exp);
+    setExp("");
     setText("");
+    setPrice("");
   };
 
   const setVis = () => {
@@ -30,12 +32,28 @@ export default function Add({ submitHandler, visibleToggleMain }) {
     <View style={styles.addWindow}>
       {/**Passing functions to the add component */}
       <TextInput
-        color="lightgrey"
-        placeholderTextColor="lightgrey"
+        color="white"
+        placeholderTextColor="#5c5c5c"
         style={styles.input}
         placeholder="New item..."
         onChangeText={changeHandler}
         value={text}
+      />
+      <TextInput
+        color="white"
+        placeholderTextColor="#5c5c5c"
+        style={styles.input}
+        placeholder="Price..."
+        onChangeText={changeHandler2}
+        value={price}
+      />
+      <TextInput
+        color="white"
+        placeholderTextColor="#5c5c5c"
+        style={styles.input}
+        placeholder="Exp: MM/DD/YYYY"
+        onChangeText={changeHandler3}
+        value={exp}
       />
       <TouchableOpacity style={styles.addBtn} onPress={pressHandler}>
         <Text>Add Item</Text>
@@ -54,16 +72,18 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     borderBottomWidth: 1,
     borderBottomColor: "lightgrey",
+    fontSize: 20,
+    fontWeight: "bold",
   },
   addWindow: {
     position: "absolute",
     width: "90%",
     margin: "5%",
-    top: 100,
+    top: 20,
     right: 10,
     zIndex: 11,
     padding: 20,
-    height: 200,
+    height: 325,
     borderRadius: 10,
     backgroundColor: "#252525",
     shadowColor: "#000",

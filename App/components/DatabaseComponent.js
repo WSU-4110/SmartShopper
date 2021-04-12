@@ -7,11 +7,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Constants from "expo-constants";
-import { FlatList, ForceTouchGestureHandler, TouchableHighlight } from "react-native-gesture-handler";
+
 import * as SQLite from "expo-sqlite";
-import CustomButton from "../../App code/CustomButton";
-import { Button } from "react-native";
-const db = SQLite.openDatabase("grocery_Items.db");
+
+const db = SQLite.openDatabase("Grocery_Items.db");
 
 class Items extends React.Component 
 {
@@ -26,7 +25,7 @@ class Items extends React.Component
     this.update();
   }
 
- markItemOwned=()=>{
+  markItemOwned=()=>{
     if(this.state.ColorHolder != "coral"){
       
       this.setState({
@@ -39,13 +38,12 @@ class Items extends React.Component
       })
     }
   }
-
+  
   render() {
     const { items } = this.state;
 
     if (items === null || items.length === 0) {
       return null;
-
     }
 
     return (
@@ -54,6 +52,7 @@ class Items extends React.Component
         {items.map(({ id, name, expirationDate, price }) => (
           <TouchableOpacity key={id} style={styles.itemcontainer,{backgroundColor: this.state.ColorHolder}} onPress={this.markItemOwned}>
             {/* These are the values coming from the database */}
+
             <Text style={styles.itemTextName}>{name}</Text>
             <Text style={styles.itemText}>
               Expires on: <Text style={styles.bold}>{expirationDate}</Text>
@@ -66,7 +65,6 @@ class Items extends React.Component
       </View>
     );
   }
-
 
   //retrieving everything from the database, then putting them into an array and storing it in the state
   update() {
@@ -120,7 +118,7 @@ export default class DataBaseComponent extends React.Component {
         </Text>
         <View style={styles.flexRow}></View>
         <ScrollView style={styles.listArea}>
-        <Items />
+          <Items />
         </ScrollView>
       </View>
     );
@@ -144,11 +142,11 @@ const styles = StyleSheet.create({
     color: "coral",
   },
   itemcontainer: {
-    backgroundColor:"#252525",
+    backgroundColor: "#252525",
     borderRadius: 5,
     padding: 10,
     marginBottom: 10,
-  }, 
+  },
   itemText: {
     color: "lightgrey",
     marginBottom: 5,
@@ -173,7 +171,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     marginHorizontal: 16,
   },
-  itemChecked: {
+    itemChecked: {
     backgroundColor: 'coral',
     color:'lightgrey',
   }

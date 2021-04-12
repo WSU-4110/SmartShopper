@@ -23,7 +23,11 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.csc4110.smartshopper",
+      "googleServicesFile": "google-services.json",
+      "useNextNotificationsApi": true
+
     },
     "web": {
       "favicon": "./assets/favicon.png"
