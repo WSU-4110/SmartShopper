@@ -40,7 +40,7 @@ export default class DataBaseComponent extends React.Component {
         <Text style={styles.headingDiscp}>This is your current working shopping list!</Text>
 
         <TouchableOpacity
-          style={styles.sortBtn}
+          style={styles.deleteBtn}
           onPress={() => {
             deleteFromDB();
           }}
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     left: 7,
     width: 50,
   },
-  sortBtn: {
+  deleteBtn: {
     marginLeft: 330,
   },
   itemcontainer: {
