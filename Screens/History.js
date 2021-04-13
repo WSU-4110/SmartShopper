@@ -83,7 +83,7 @@ export default class HistoryDataBase extends React.Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity
-          style={styles.sortBtn}
+          style={styles.deleteBtn}
           onPress={() => {
             handleDeleteBtn();
           }}
