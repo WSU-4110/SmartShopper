@@ -57,22 +57,42 @@ export default class DataBaseComponent extends React.Component {
   }
 }
 
-// this is suppose to sorts the date in a decending order but it can delete
+// this is deletes the entire table from the database
 const deleteFromDB = () => {
   db.transaction((tx) => {
     tx.executeSql("DELETE FROM items");
   });
 };
 
-class Items extends React.Component {
-  state = {
+
+class Items extends React.Component 
+{
+  constructor() {
+  super();
+  this.state = {
+
     items: null,
-  };
+    ColorHolder: "#252525",
+  }};
 
   componentDidMount() {
     this.update();
   }
 
+  markItemOwned=()=>{
+    if(this.state.ColorHolder != "coral"){
+      
+      this.setState({
+        ColorHolder: "coral"
+      })
+    }
+    else{
+      this.setState({
+        ColorHolder: "#252525"
+      })
+    }
+  }
+  
   render() {
     const { items } = this.state;
 
@@ -84,7 +104,7 @@ class Items extends React.Component {
       <View style={styles.sectionContainer}>
         {/* Map loop to iterate through the database and show them in a Text component */}
         {items.map(({ id, name, expirationDate, price }) => (
-          <TouchableOpacity key={id} style={styles.itemcontainer}>
+          <TouchableOpacity key={id} style={styles.itemcontainer,{backgroundColor: this.state.ColorHolder}} onPress={this.markItemOwned}>
             {/* These are the values coming from the database */}
 
             <Text style={styles.itemTextName}>{name}</Text>
@@ -153,11 +173,9 @@ const styles = StyleSheet.create({
     fontSize: 25,
     marginBottom: 5,
   },
-
   flexRow: {
     flexDirection: "row",
   },
-
   listArea: {
     backgroundColor: "#1f1f1f",
     flex: 1,
@@ -167,4 +185,8 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     marginHorizontal: 16,
   },
+    itemChecked: {
+    backgroundColor: 'coral',
+    color:'lightgrey',
+  }
 });
