@@ -107,7 +107,7 @@ export default StyleSheet.create({
     },
 
     recommendCancelBtn: {
-      marginTop: -35,
+      marginTop: -130,
       color: "coral",
       width: "100%", //width and height of the circle
       height: 50,

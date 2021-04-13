@@ -60,7 +60,7 @@ export default function Recommend({ submitHandler }) {
       <View style={styles.flexRow}></View>
       <ScrollView>
         {groceryItems.map(({ id, name, expirationDate, price, addIt }) => (
-          <TouchableOpacity
+          <TouchableOpacity style = {styles.enter}
             key={id}
             style={styles.itemcontainer}
             onPressItem={(id) =>
@@ -87,6 +87,7 @@ export default function Recommend({ submitHandler }) {
           </TouchableOpacity>
         ))}
       </ScrollView>
+  
       <TouchableOpacity style={styles.doneBtn} onPress={recycleWhenPressed}>
         <Text>Recycle Items</Text>
       </TouchableOpacity>
@@ -99,8 +100,13 @@ const styles = StyleSheet.create({
     height: 450,
     marginBottom: 50,
   },
+
+  enter: {
+    
+  },
+
   doneBtn: {
-    marginTop: 10,
+    marginBottom: 90,
     color: "#fff",
     backgroundColor: "coral",
     width: "100%", //width and height of the circle

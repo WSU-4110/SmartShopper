@@ -101,12 +101,12 @@ export default class HistoryDataBase extends React.Component {
     return (
       //content that is displayed when you are first open the page
       <View style={styles.container}>
-        <Animatable.View animation="slideInRight" duration={1500} style={{marginTop: 5, height: 100, justifyContent: "center"}}>
+        <Animatable.View animation="slideInRight" duration={900} style={{marginTop: 5, height: 100, justifyContent: "center"}}>
 
           {/*Should we have History since it already says history in the status bar? */}
           <Text style={styles.heading}>History List</Text>
           {/*This text slides in just after the above line for an added affect */}
-          <Animatable.View animation="slideInRight" duration={1700} style={{marginTop: -13, justifyContent: "center"}}>
+          <Animatable.View animation="slideInRight" duration={1000} style={{marginTop: -13, justifyContent: "center"}}>
             <Text style={{textAlign: "center", marginBottom: 25, color: "coral" }}>
             A list comprised of everything you've ever entered
             </Text>

@@ -12,6 +12,8 @@ import Constants from "expo-constants";
 import * as Animatable from "react-native-animatable";
 import Icon from "react-native-vector-icons/Ionicons";
 import { MaterialIcons } from "@expo/vector-icons";
+import styles from "../../Styling/DbComponent";
+
 
 
 import * as SQLite from "expo-sqlite";
@@ -102,27 +104,28 @@ export default class DataBaseComponent extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Animatable.View animation="slideInRight" duration={1500} style={{ height: 100, justifyContent: "center", paddingHorizontal: 5 }}>
-                  <Text style={styles.headerText}> Your Saved List</Text>
+        <Animatable.View animation="slideInRight" duration={900} style={{ height: 100, justifyContent: "center", paddingHorizontal: 5 }}>
+          <Text style={styles.headerText}> Your Saved List</Text>
 
-                  {/*Search bar animations */}
-                  <Animatable.View animation="slideInRight" duration={1000} style={{
-                      height: 10,
-                      marginTop: 10,
-                      paddingVertical: 0,
-                      backgroundColor: "white",
-                      flexDirection: "row",
-                      padding: 5,
-                      alignItems: "center",
-                      flex: 0.3,
-                    }}
-                  >
-                    <Animatable.View animation="fadeInRight">
-                      <Icon name="ios-search" style={{ fontSize: 12 }} />
-                    </Animatable.View>
-                    <TextInput placeholder="Tap to Search" style={{ fontSize: 15, marginLeft: 15, flex: 1 }} />
-                  </Animatable.View>
-                </Animatable.View>
+          {/*Search bar animations */}
+          <Animatable.View animation="slideInRight" duration={1000} style={{
+              height: 10,
+              marginTop: 20,
+              paddingVertical: 0,
+              backgroundColor: "white",
+              flexDirection: "row",
+              padding: 5,
+              alignItems: "center",
+              flex: 0.3,
+            }}
+          >
+            <Animatable.View animation="fadeInRight">
+              <Icon name="ios-search" style={{ fontSize: 12 }} />
+            </Animatable.View>
+            <TextInput placeholder="Tap to Search" style={{ fontSize: 15, marginLeft: 15, flex: 1 }} />
+          </Animatable.View>
+        </Animatable.View>
+
         <View style={styles.flexRow}></View>
         <ScrollView style={styles.listArea}>
           <Items />
@@ -132,86 +135,3 @@ export default class DataBaseComponent extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  bold: {
-    fontWeight: "bold",
-  },
-
-  /*little sliver of space right below the white status bar*/
-  container: {
-    backgroundColor: "#252525",
-    height: 100,
-    marginTop: -10,
-    flex: 1,
-    paddingTop: Constants.statusBarHeight,
-  },
-
-  top: {
-    backgroundColor: "#252525",
-    alignItems: "center",
-    justifyContent: "center",
-    height: 100,
-    marginBottom: 15,
-    zIndex: 1,
-  },
-
-  heading: {
-    fontSize: 26,
-    fontWeight: "bold",
-    textAlign: "center",
-    paddingBottom: 30,
-    color: "coral",
-  },
-
-  header: {
-    backgroundColor: "#252525",
-    alignItems: "center",
-    justifyContent: "center",
-    height: 100,
-    marginBottom: 15,
-  },
-
-  headerText: {
-    height: 40,
-    marginTop: -50,
-    fontSize: 25,
-    padding: 26,
-    fontWeight: "bold",
-    color: "coral",
-    //marginLeft: 55,
-    textAlign: "center",
-    //zIndex: 1,
-  },
-
-  itemcontainer: {
-    backgroundColor: "#252525",
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
-  },
-  itemText: {
-    color: "lightgrey",
-    marginBottom: 5,
-  },
-  itemTextName: {
-    color: "lightgrey",
-    fontWeight: "bold",
-    fontSize: 25,
-    marginBottom: 5,
-  },
-
-  flexRow: {
-    flexDirection: "row",
-  },
-
-  listArea: {
-    backgroundColor: "#1f1f1f",
-    flex: 1,
-    paddingTop: 16,
-  },
-  sectionContainer: {
-    marginBottom: 16,
-    marginHorizontal: 16,
-    
-  },
-});

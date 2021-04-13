@@ -82,7 +82,7 @@ export default function AddDelete() {
         {/**Animatable.View is incorporated to give animation to the search bar coming into view*/}
         {/**Icon is used to add an icon in the search bar*/}
         <View style={styles.header}>
-          <Animatable.View animation="slideInRight" duration={1000} style={{ height: 150, justifyContent: "center", paddingHorizontal: 5 }}>
+          <Animatable.View animation="slideInRight" duration={900} style={{ height: 150, justifyContent: "center", paddingHorizontal: 5 }}>
             <Text style={styles.headerText}> Create Your List </Text>
           </Animatable.View>   
         </View>
@@ -97,12 +97,14 @@ export default function AddDelete() {
           {/* ///////////////////////////////////////////////////////////////////////// */}
 
           {saveVisible ? (
+            //Save confirmation window
             <View style={styles.saveWindow}>
               <Text style={styles.saveTitle}>Are you sure?</Text>
               <Text style={styles.saveMessage}>
                 By pressing the "Save List" button, your list will be saved under MyList. Your items will also be saved to History.
               </Text>
 
+              {/*Button for save operation */}
               <TouchableOpacity
                 style={styles.saveConfirmBtn}
                 onPress={() => {
@@ -112,6 +114,8 @@ export default function AddDelete() {
               >
                 <Text>Save List</Text>
               </TouchableOpacity>
+
+              {/*Button to cancel save operation */}
               <TouchableOpacity
                 style={styles.cancelBtn}
                 onPress={() => {
@@ -148,7 +152,7 @@ export default function AddDelete() {
         {/*Footer View that houses the 3 buttons*/}
         <View style={styles.footer}>
           {/**Add "+" button */}
-          <Animatable.View animation="slideInRight" duration={1500} style={{ height: 120, justifyContent: "center", paddingHorizontal: 5 }}>
+          <Animatable.View animation="slideInRight" duration={1000} style={{ height: 120, justifyContent: "center", paddingHorizontal: 5 }}>
             <TouchableOpacity
                 style={styles.addButton}
                 onPress={() => {
