@@ -75,11 +75,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
+
   addWindow: {
     position: "absolute",
     width: "90%",
     margin: "5%",
-    top: 20,
+    top: 0,
     right: 10,
     zIndex: 11,
     padding: 20,
@@ -96,6 +97,7 @@ const styles = StyleSheet.create({
 
     elevation: 24,
   },
+
   addBtn: {
     color: "#fff",
     backgroundColor: "coral",
@@ -105,6 +107,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center", //aligning the items in the center of the circle
   },
+
   cancelBtn: {
     marginTop: 10,
     color: "coral",
@@ -116,6 +119,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center", //aligning the items in the center of the circle
   },
+
   cancelBtnText: {
     color: "coral",
   },

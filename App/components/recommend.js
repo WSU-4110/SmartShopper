@@ -15,7 +15,6 @@ import HistoryDataBase from "../../Screens/History.js";
 import Items from "../components/Items.js";
 import * as SQLite from "expo-sqlite";
 import { useEffect } from "react";
-import MyListItems from "./MyListItems.js";
 import { exp } from "react-native/Libraries/Animated/src/Easing";
 
 const db = SQLite.openDatabase("Grocery_Items.db");
@@ -94,13 +93,14 @@ export default function Recommend({ submitHandler }) {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     height: 450,
     marginBottom: 50,
   },
   doneBtn: {
-    marginTop: 20,
+    marginTop: 10,
     color: "#fff",
     backgroundColor: "coral",
     width: "100%", //width and height of the circle
