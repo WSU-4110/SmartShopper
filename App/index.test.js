@@ -6,6 +6,7 @@ import Items from "./components/DatabaseComponent";
 import { componentDidMount } from "./components/DatabaseComponent";
 import add from "./components/DatabaseComponent";
 import deleteFromDB from "./components/DatabaseComponent";
+import update from "./components/DatabaseComponent";
 jest.mock("./components/DatabaseComponent");
 
 test("testing if the component was mounted at least once.", () => {
