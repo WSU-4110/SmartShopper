@@ -15,7 +15,6 @@ import HistoryDataBase from "../../Screens/History.js";
 import Items from "../components/Items.js";
 import * as SQLite from "expo-sqlite";
 import { useEffect } from "react";
-import MyListItems from "./MyListItems.js";
 import { exp } from "react-native/Libraries/Animated/src/Easing";
 
 const db = SQLite.openDatabase("Grocery_Items.db");
@@ -51,7 +50,6 @@ export default function Recommend({ submitHandler }) {
       }
     });
   };
-
 
   return (
     <View style={styles.container}>
