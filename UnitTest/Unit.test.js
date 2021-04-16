@@ -15,6 +15,15 @@ it("Render Recommend without errors/crashing.", () => {
     expect( () => render(<Recommend />));
   });
 
+it("Render Home without error/crashing", () => {
+    expect( () => render(<Home />));
+  });
+
+test('recycleWhenPressed: Testing to see if recyleWhenPressed called once',()=>{
+  recycleWhenPressed();
+  expect(recycleWhenPressed).toBeCalledTimes(1);
+  });
+
 test('setGroceryItems: Testing to see if setGroceryItems saves given content and not return null',()=>{
     expect(setGroceryItems(0,"Fish", "May 3, 2021", 7.99, true)).not.toBeNull();
 });
@@ -23,18 +32,10 @@ test('Update from recommended.js: Testing to see if upon calling update it also 
     ()=>expect(update).toHaveBeenCalledWith(setGroceryItems(),executeSQL(),transaction());
 });
 
-test('recycleWhenPressed: Testing to see if recyleWhenPressed called once',()=>{
-expect(recycleWhenPressed).toBeCalledTimes(1);
-});
-
 test('useEffect:Testing if upon calling useEffect() the function inside is also called',()=>{
     ()=>expect(useEffect).toHaveBeenCalledWith(update());
 });
 
-
-it("Render Home without error/crashing", () => {
-    expect( () => render(<Home />));
-  });
 
 test('pressHandler: Testing to see if navigation to Add page throws any unexpected error',()=>{
     expect(()=>pressHandler).not.toThrow();
@@ -44,7 +45,7 @@ test('pressHandler1: Testing to see if pressHandler1 contains content to travers
     expect(()=>pressHandler1).not.toBeNull();
 });
 
-test('pressHandler2: Checking to see if function responds to it being called (needs to be compatible with mock)',()=>{
+test('pressHandler2: Checking to see if function responds to it being called',()=>{
     pressHandler2();
     expect(pressHandler2).toBeCalled();
     });
