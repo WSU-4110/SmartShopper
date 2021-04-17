@@ -1,52 +1,14 @@
-**SmartShopper**
+# SmartShopper
 
-## Search Bar
+## Purpose
+#### The purpose of SmartShoper is to allow users to keep track of grocery goods they buy. Smart Shopper is a simplified version grocery tracker and allows for use inside supermarkets since it does not require internet connection for it to run.
 
-#### Installation
+## Functionality
+#### SmartShopper allows users create list and add or delete grocery goods from it. Upon adding new product users can view the history of current as well as previous lists. To further personalize user's experience, optional attributes have been added such as enter price, expiration date, as well as check off items they own. Upon adding new items, user is also able to add recommended products (receommended products come from current/previously created lists).
 
-The necessary imports in AddDelete.js
-
-``` bash
-import Icon from 'react-native-vector-icons/Ionicons';
-import { FlatList} from "react-native";
-```
-
-No npm installation necessary. The search bar revolves around Animatable.View animation, that gives it some of the movements on the screen.
-It is mostly CSS work which can be found in the header container.
-
-## Push Notifications
-
-#### Installation
-
-The necessary imports in
-
-``` bash
-import React from 'react';
-import { Text, View, Button, Vibration, Platform } from 'react-native';
-import { Notifications } from 'expo';
-import * as Permissions from 'expo-permissions';
-import Constants from 'expo-constants';
-```
-
-
-**An easy to use shopping app, designed to help shoppers at the grocery store.**
-
-Progress: Add items implementation.
-
-Current working version of the App.
-
-This will show the splash screen for our application.
-Added Database Functionality
-Added **History** Functionality
-
-## Installing all dependencies 
-
-Make sure to add them if you do not have them already!
-``` bash
-npm install react-native-animatable --save
-npm install https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz
-npm install @react-navigation/native
-expo install react-native-gesture-handler react-native-reanimated
-npm install react-navigation-stack @react-native-community/masked-view react-native-safe-area-context
-expo install expo-sqlite
-```
+## Contributors
+* Kristopher Covert
+* Fardus Ahmed
+* Adrian Tarnowski
+* Jacob Schnur
+* Justin Crawford
