@@ -14,13 +14,7 @@ import styles from "../../Styling/AddDeleteStyling";
 
 
 export default function AddDelete() {
-  const [todos, setTodos] = useState([
-
-    // { text: "Milk", exp: "02 / 12 / 2021", price: "2", key: "1" },
-    // { text: "Egg", exp: "02 / 22 / 2021", price: "3", key: "2" },
-    // { text: "Bread", exp: "02 / 17 / 2021", price: "5", key: "3" },
-
-  ]);
+  const [todos, setTodos] = useState([]);
 
   //database instance
   var db = new DataBaseComponent();
@@ -42,6 +36,7 @@ export default function AddDelete() {
       return prevTodos.filter((todo) => todo.key != key);
     });
   };
+
   // Input length checker (must be > 1)
   const submitHandler = (text, price, exp) => {
     if (isNaN(price)) {

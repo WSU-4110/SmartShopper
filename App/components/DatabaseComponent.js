@@ -8,6 +8,8 @@ import {
   TextInput,
   FlatList
 } from "react-native";
+import { ScrollView, Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+//import Items from "../components/Items.js";
 import Constants from "expo-constants";
 import * as Animatable from "react-native-animatable";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -20,15 +22,92 @@ import * as SQLite from "expo-sqlite";
 
 const db = SQLite.openDatabase("Grocery_Items.db");
 
-class Items extends React.Component {
+export default class DataBaseComponent extends React.Component {
   state = {
-    items: null,
+    name: null,
   };
+
+  //if there is not a table in the database, then create one
+  componentDidMount() {
+    db.transaction((tx) => {
+      tx.executeSql("create table if not exists items (id integer primary key not null, name text, expirationDate date, price text);");
+    });
+  }
+
+  //adding the items to the database
+  add(name, expirationDate, price) {
+    // is name empty?
+    if (name === null || name === "") {
+      return false;
+    }
+
+    //attributes line up with the quesiton marks in the corresponding order
+    db.transaction((tx) => {
+      tx.executeSql("insert into items (name, expirationDate, price) values (?, ?, ?)", [name, expirationDate, price]);
+      tx.executeSql("select * from items", [], (_, { rows }) => console.log(JSON.stringify(rows)));
+    }, null);
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.heading}>My List</Text>
+        <Text style={styles.headingDiscp}>This is your current working shopping list!</Text>
+
+        <TouchableOpacity
+          style={styles.deleteBtn}
+          onPress={() => {
+            deleteFromDB();
+          }}
+        >
+          <Image source={require("./../../assets/del.webp")} style={styles.btnImage} />
+        </TouchableOpacity>
+
+        <View style={styles.flexRow}></View>
+        <ScrollView style={styles.listArea}>
+          <Items />
+        </ScrollView>
+      </View>
+    );
+  }
+}
+
+// this is deletes the entire table from the database
+const deleteFromDB = () => {
+  db.transaction((tx) => {
+    tx.executeSql("DELETE FROM items");
+  });
+};
+
+
+class Items extends React.Component 
+{
+  constructor() {
+  super();
+  this.state = {
+
+    items: null,
+    ColorHolder: "#252525",
+  }};
 
   componentDidMount() {
     this.update();
   }
 
+  markItemOwned=()=>{
+    if(this.state.ColorHolder != "coral"){
+      
+      this.setState({
+        ColorHolder: "coral"
+      })
+    }
+    else{
+      this.setState({
+        ColorHolder: "#252525"
+      })
+    }
+  }
+  
   render() {
     const { items } = this.state;
 
@@ -42,8 +121,9 @@ class Items extends React.Component {
         {/* Map loop to iterate through the database and show them in a Text component */}
         <View>
           {items.map(({ id, name, expirationDate, price }) => (
-          <TouchableOpacity key={id} style={styles.itemcontainer}>
-            {/* These are the values coming from the database*/}
+            <TouchableOpacity key={id} style={styles.itemcontainer,{backgroundColor: this.state.ColorHolder}} onPress={this.markItemOwned}>
+            {/* These are the values coming from the database */}
+
             <Text style={styles.itemTextName}>{name}</Text>
             <Text style={styles.itemText}>
               Expires on: <Text style={styles.bold}>{expirationDate}</Text>
@@ -61,9 +141,7 @@ class Items extends React.Component {
   //retrieving everything from the database, then putting them into an array and storing it in the state
   update() {
     db.transaction((tx) => {
-      tx.executeSql(`select * from items;`, [], (_, { rows: { _array } }) =>
-        this.setState({ items: _array })
-      );
+      tx.executeSql(`select * from items;`, [], (_, { rows: { _array } }) => this.setState({ items: _array }));
     });
   }
 }

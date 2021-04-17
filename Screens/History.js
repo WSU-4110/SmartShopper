@@ -10,6 +10,8 @@ import * as Animatable from "react-native-animatable";
 import styles from "../Styling/HistoryStyling";
 
 
+import { ScrollView, Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import Constants from "expo-constants";
 import * as SQLite from "expo-sqlite";
 
 const hdb = SQLite.openDatabase("HistoryItems.db");
@@ -29,7 +31,6 @@ class HistoryItems extends React.Component {
     if (historyItems === null || historyItems.length === 0) {
       return null;
     }
-
     return (
       <View style={styles.sectionContainer}>
         {/* Map loop to iterate through the database and show them in a Text component */}
@@ -39,7 +40,6 @@ class HistoryItems extends React.Component {
             <Text style={styles.historyItemTextName}>
               <Text style={styles.bold}>{name}</Text>
             </Text>
-
             <Text style={styles.historyItemText}>
               Expired on: <Text style={styles.bold}>{expirationDate}</Text>
             </Text>
@@ -55,15 +55,15 @@ class HistoryItems extends React.Component {
   //retrieving everything from the database, then putting them into an array and storing it in the state
   update() {
     hdb.transaction((tx) => {
-      tx.executeSql(
-        `select * from historyitems;`,
-        [],
-        (_, { rows: { _array } }) => this.setState({ historyItems: _array })
-      );
+      tx.executeSql(`select * from historyitems;`, [], (_, { rows: { _array } }) => this.setState({ historyItems: _array }));
     });
   }
 }
-
+const handleDeleteBtn = () => {
+  hdb.transaction((tx) => {
+    tx.executeSql("DELETE FROM historyitems");
+  });
+};
 export default class HistoryDataBase extends React.Component {
   state = {
     name: null,
@@ -72,9 +72,7 @@ export default class HistoryDataBase extends React.Component {
   //if there is not a table in the database, then create one
   componentDidMount() {
     hdb.transaction((tx) => {
-      tx.executeSql(
-        "create table if not exists historyitems (id integer primary key not null, name text, expirationDate text, price text);"
-      );
+      tx.executeSql("create table if not exists historyitems (id integer primary key not null, name text, expirationDate text, price text);");
     });
   }
 
@@ -87,13 +85,8 @@ export default class HistoryDataBase extends React.Component {
 
     //attributes line up with the quesiton marks in the corresponding order
     hdb.transaction((tx) => {
-      tx.executeSql(
-        "insert into historyitems (name, expirationDate, price) values (?, ?, ?)",
-        [name, expirationDate, price]
-      );
-      tx.executeSql("select * from historyitems", [], (_, { rows }) =>
-        console.log(JSON.stringify(rows))
-      );
+      tx.executeSql("insert into historyitems (name, expirationDate, price) values (?, ?, ?)", [name, expirationDate, price]);
+      tx.executeSql("select * from historyitems", [], (_, { rows }) => console.log(JSON.stringify(rows)));
     }, null);
   }
 
@@ -102,7 +95,14 @@ export default class HistoryDataBase extends React.Component {
       //content that is displayed when you are first open the page
       <View style={styles.container}>
         <Animatable.View animation="slideInRight" duration={900} style={{marginTop: 5, height: 100, justifyContent: "center"}}>
-
+            <TouchableOpacity
+          style={styles.deleteBtn}
+          onPress={() => {
+            handleDeleteBtn();
+          }}
+        >
+          <Image source={require("../assets/del.webp")} style={styles.btnImage} />
+        </TouchableOpacity>
           {/*Should we have History since it already says history in the status bar? */}
           <Text style={styles.heading}>History List</Text>
           {/*This text slides in just after the above line for an added affect */}
