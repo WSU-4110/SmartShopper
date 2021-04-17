@@ -41,12 +41,13 @@
 
 
 ### FR1.  Bill summary
-```
 ###### Goal: The system will be able to calculate the total price after a grocery trip.
 ###### Stakeholders: New Shoppers/ Young Adults
 ###### Description: When a user finishes purchasing their items, they will be able to see their total spending with the press of a button.
 ###### Origin: Based on the initial project specification document, team members came up with this description during the first meeting.
-###### Version: 1.0	Date: 01/31/2021	Priority: 18```
+###### Version: 1.0	
+###### Date: 01/31/2021	
+###### Priority: 18
 
 ### FR2.  Mobile Application
 ``Goal: The application should be physically portable.
