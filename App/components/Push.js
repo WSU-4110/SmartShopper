@@ -2,8 +2,7 @@ import React from 'react';
 import { Text, View, Button, Vibration, Platform, StyleSheet } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
-import * as Notifications from 'expo-notifications';
-
+//import Button from "./Button"
 
 export default class Push extends React.Component {
   state = {
@@ -85,7 +84,8 @@ export default class Push extends React.Component {
       <View style={title.background}>
         <Text style={title.ShopperTitle}>Test Push</Text>
         <View style={title.allignButton}>
-          <Button title={'Press to Send Notification'} onPress={() => this.sendPushNotification()} />
+        <Button title={'Press to Send Notification'} onPress={() => this.sendPushNotification()} />
+
         </View>
       </View>
     );

@@ -6,7 +6,7 @@ export default StyleSheet.create({
     bold: {
       fontWeight: "bold",
     },
-  
+
     /*little sliver of space right below the white status bar*/
     container: {
       backgroundColor: "#252525",
@@ -15,7 +15,7 @@ export default StyleSheet.create({
       flex: 1,
       paddingTop: Constants.statusBarHeight,
     },
-  
+
     top: {
       backgroundColor: "#252525",
       alignItems: "center",
@@ -24,7 +24,7 @@ export default StyleSheet.create({
       marginBottom: 15,
       zIndex: 1,
     },
-  
+
     heading: {
       fontSize: 26,
       fontWeight: "bold",
@@ -32,7 +32,7 @@ export default StyleSheet.create({
       paddingBottom: 30,
       color: "coral",
     },
-  
+
     header: {
       backgroundColor: "#252525",
       alignItems: "center",
@@ -40,7 +40,7 @@ export default StyleSheet.create({
       height: 100,
       marginBottom: 15,
     },
-  
+
     headerText: {
       height: 40,
       marginTop: -80,
@@ -52,7 +52,7 @@ export default StyleSheet.create({
       textAlign: "center",
       //zIndex: 1,
     },
-  
+
     itemcontainer: {
       backgroundColor: "#252525",
       borderRadius: 5,
@@ -69,11 +69,11 @@ export default StyleSheet.create({
       fontSize: 25,
       marginBottom: 5,
     },
-  
+
     flexRow: {
       flexDirection: "row",
     },
-  
+
     listArea: {
       backgroundColor: "#1f1f1f",
       flex: 1,
@@ -84,4 +84,3 @@ export default StyleSheet.create({
       marginHorizontal: 16,
     },
   });
-  
