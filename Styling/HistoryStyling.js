@@ -53,50 +53,11 @@ export default StyleSheet.create({
       marginHorizontal: 16,
     },
 
-    bold: { fontWeight: "bold" },
-  container: {
-    backgroundColor: "#252525",
-    flex: 1,
-    paddingTop: Constants.statusBarHeight,
-  },
+
   btnImage: {
     height: 50,
     left: 7,
     width: 50,
   },
-  heading: {
-    fontSize: 26,
-    fontWeight: "bold",
-    textAlign: "center",
-    paddingBottom: 30,
-    color: "coral",
-  },
-  historyitemcontainer: {
-    backgroundColor: "#252525",
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
-  },
-  historyItemText: {
-    color: "lightgrey",
-    marginBottom: 5,
-  },
-  historyItemTextName: {
-    color: "lightgrey",
-    fontSize: 25,
-    marginBottom: 5,
-  },
-  flexRow: {
-    flexDirection: "row",
-  },
 
-  listArea: {
-    backgroundColor: "#1f1f1f",
-    flex: 1,
-    paddingTop: 16,
-  },
-  sectionContainer: {
-    marginBottom: 16,
-    marginHorizontal: 16,
-  },
   });

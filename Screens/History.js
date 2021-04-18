@@ -1,15 +1,6 @@
 import React from "react";
-import {
-  ScrollView,
-  Text,
-  View,
-  TouchableOpacity,
-} from "react-native";
-import Constants from "expo-constants";
 import * as Animatable from "react-native-animatable";
 import styles from "../Styling/HistoryStyling";
-
-
 import { ScrollView, Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Constants from "expo-constants";
 import * as SQLite from "expo-sqlite";
