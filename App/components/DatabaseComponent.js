@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  TextInput,
-  FlatList
-} from "react-native";
-import { ScrollView, Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { ScrollView, Image, StyleSheet, Text, View, TouchableOpacity, FlatLis, TextInput } from "react-native";
 //import Items from "../components/Items.js";
 import Constants from "expo-constants";
 import * as Animatable from "react-native-animatable";
@@ -51,9 +42,27 @@ export default class DataBaseComponent extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.heading}>My List</Text>
-        <Text style={styles.headingDiscp}>This is your current working shopping list!</Text>
+        <Animatable.View animation="slideInRight" duration={900} style={{ height: 100, justifyContent: "center", paddingHorizontal: 5 }}>
+          <Text style={styles.headerText}> Your Saved List</Text>
 
+          {/*Search bar animations */}
+          <Animatable.View animation="slideInRight" duration={1000} style={{
+              height: 10,
+              marginTop: 20,
+              paddingVertical: 0,
+              backgroundColor: "white",
+              flexDirection: "row",
+              padding: 5,
+              alignItems: "center",
+              flex: 0.3,
+            }}
+          >
+            <Animatable.View animation="fadeInRight">
+              <Icon name="ios-search" style={{ fontSize: 12 }} />
+            </Animatable.View>
+            <TextInput placeholder="Tap to Search" style={{ fontSize: 15, marginLeft: 15, flex: 1 }} />
+          </Animatable.View>
+        </Animatable.View>
         <TouchableOpacity
           style={styles.deleteBtn}
           onPress={() => {
@@ -143,73 +152,6 @@ class Items extends React.Component
     db.transaction((tx) => {
       tx.executeSql(`select * from items;`, [], (_, { rows: { _array } }) => this.setState({ items: _array }));
     });
-  }
-}
-
-export default class DataBaseComponent extends React.Component {
-  state = {
-    name: null,
-  };
-
-  //if there is not a table in the database, then create one
-  componentDidMount() {
-    db.transaction((tx) => {
-      tx.executeSql(
-        "create table if not exists items (id integer primary key not null, name text, expirationDate text, price text);"
-      );
-    });
-  }
-
-  //adding the items to the database
-  add(name, expirationDate, price) {
-    // is name empty?
-    if (name === null || name === "") {
-      return false;
-    }
-
-    //attributes line up with the question marks in the corresponding order
-    db.transaction((tx) => {
-      tx.executeSql(
-        "insert into items (name, expirationDate, price) values (?, ?, ?)",
-        [name, expirationDate, price]
-      );
-      tx.executeSql("select * from items", [], (_, { rows }) =>
-        console.log(JSON.stringify(rows))
-      );
-    }, null);
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <Animatable.View animation="slideInRight" duration={900} style={{ height: 100, justifyContent: "center", paddingHorizontal: 5 }}>
-          <Text style={styles.headerText}> Your Saved List</Text>
-
-          {/*Search bar animations */}
-          <Animatable.View animation="slideInRight" duration={1000} style={{
-              height: 10,
-              marginTop: 20,
-              paddingVertical: 0,
-              backgroundColor: "white",
-              flexDirection: "row",
-              padding: 5,
-              alignItems: "center",
-              flex: 0.3,
-            }}
-          >
-            <Animatable.View animation="fadeInRight">
-              <Icon name="ios-search" style={{ fontSize: 12 }} />
-            </Animatable.View>
-            <TextInput placeholder="Tap to Search" style={{ fontSize: 15, marginLeft: 15, flex: 1 }} />
-          </Animatable.View>
-        </Animatable.View>
-
-        <View style={styles.flexRow}></View>
-        <ScrollView style={styles.listArea}>
-          <Items />
-        </ScrollView>
-      </View>
-    );
   }
 }
 

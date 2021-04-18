@@ -83,5 +83,66 @@ export default StyleSheet.create({
       marginBottom: 16,
       marginHorizontal: 16,
     },
+
+    bold: {
+      fontWeight: "bold",
+    },
+    container: {
+      backgroundColor: "coral",
+      flex: 1,
+      paddingTop: Constants.statusBarHeight,
+    },
+    heading: {
+      fontSize: 26,
+      fontWeight: "bold",
+      textAlign: "center",
+      paddingBottom: 0,
+      color: "white",
+    },
+    headingDiscp: {
+      textAlign: "center",
+      marginBottom: 30,
+      color: "white",
+    },
+    btnImage: {
+      height: 50,
+      left: 7,
+      width: 50,
+    },
+    deleteBtn: {
+      marginLeft: 330,
+    },
+    itemcontainer: {
+      backgroundColor: "#252525",
+      borderRadius: 5,
+      padding: 10,
+      marginBottom: 10,
+    },
+    itemText: {
+      color: "white",
+      marginBottom: 5,
+    },
+    itemTextName: {
+      color: "white",
+      fontWeight: "bold",
+      fontSize: 25,
+      marginBottom: 5,
+    },
+    flexRow: {
+      flexDirection: "row",
+    },
+    listArea: {
+      backgroundColor: "#1f1f1f",
+      flex: 1,
+      paddingTop: 16,
+    },
+    sectionContainer: {
+      marginBottom: 16,
+      marginHorizontal: 16,
+    },
+      itemChecked: {
+      backgroundColor: 'coral',
+      color:'lightgrey',
+    }
   });
   
