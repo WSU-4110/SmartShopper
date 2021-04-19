@@ -3,6 +3,7 @@ import * as Animatable from "react-native-animatable";
 import styles from "../Styling/HistoryStyling";
 import { ScrollView, Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Constants from "expo-constants";
+import { MaterialIcons } from "@expo/vector-icons";
 import * as SQLite from "expo-sqlite";
 
 const hdb = SQLite.openDatabase("HistoryItems.db");
@@ -85,26 +86,26 @@ export default class HistoryDataBase extends React.Component {
     return (
       //content that is displayed when you are first open the page
       <View style={styles.container}>
-        <Animatable.View animation="slideInRight" duration={900} style={{marginTop: 5, height: 100, justifyContent: "center"}}>
-            <TouchableOpacity
-          style={styles.deleteBtn}
-          onPress={() => {
-            handleDeleteBtn();
-          }}
-        >
-          <Image source={require("../assets/del.webp")} style={styles.btnImage} />
-        </TouchableOpacity>
+        <Animatable.View animation="slideInRight" duration={900} style={{ marginTop: 5, height: 100, justifyContent: "center" }}>
+          <TouchableOpacity
+            style={styles.deleteBtn}
+            onPress={() => {
+              handleDeleteBtn();
+            }}
+          >
+            <MaterialIcons name="delete" size={50} color="white" />
+          </TouchableOpacity>
           {/*Should we have History since it already says history in the status bar? */}
           <Text style={styles.heading}>History List</Text>
           {/*This text slides in just after the above line for an added affect */}
-          <Animatable.View animation="slideInRight" duration={1000} style={{marginTop: -13, justifyContent: "center"}}>
-            <Text style={{textAlign: "center", marginBottom: 25, color: "coral" }}>
-            A list comprised of everything you've ever entered
+          <Animatable.View animation="slideInRight" duration={1000} style={{ marginTop: -13, justifyContent: "center" }}>
+            <Text style={{ textAlign: "center", marginBottom: 25, color: "coral" }}>
+              A list comprised of everything you've ever entered
             </Text>
           </Animatable.View>
         </Animatable.View>
 
-      {/*Now individual items are being displayed*/}
+        {/*Now individual items are being displayed*/}
         <View style={styles.flexRow}></View>
         <ScrollView style={styles.listArea}>
           <HistoryItems />
