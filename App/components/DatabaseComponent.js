@@ -154,7 +154,13 @@ class Items extends React.Component {
         {/* Map loop to iterate through the database and show them in a Text component */}
         <View>
           {items.map(({ id, name, expirationDate, price }) => (
-            <TouchableOpacity key={id} style={styles.itemcontainer, { backgroundColor: this.state.ColorHolder }} onPress={this.markItemOwned}>
+            <TouchableOpacity key={id} style={{
+              backgroundColor: this.state.ColorHolder,
+              borderRadius: 5,
+              padding: 10,
+              marginBottom: 10,
+            }}
+              onPress={this.markItemOwned}>
               {/* These are the values coming from the database */}
 
               <Text style={styles.itemTextName}>{name}</Text>
