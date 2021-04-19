@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import CustomButton from "../App code/CustomButton"; //needed library for custom buttons to work
 import CustomButton2 from "../App code/CustomButton2"; //needed library for custom buttons to work
 
+
 export default function Home({ navigation }) {
   const pressHandler = () => {
     navigation.navigate("Add");
@@ -19,14 +20,16 @@ export default function Home({ navigation }) {
   const pressHandler3 = () => {
     navigation.navigate("Push");
   };
+  const pressHandler4 = () => {
+    navigation.navigate("SplashScreen");
+  };
 
 
   return (
     <View style={title.background}>
+       <CustomButton2 text="SplashScreen" onPress={pressHandler4} color="coral" />
       <CustomButton2 text="Push" onPress={pressHandler3} color="coral" />
-
       <Text style={title.ShopperTitle}>Smart Shopper</Text>
-
       <View style={title.allignButton}>
         <CustomButton text="Create Lists" onPress={pressHandler} color="coral" />
         <CustomButton text="My List" onPress={pressHandler1} color="coral" />
@@ -64,6 +67,7 @@ const title = StyleSheet.create({
 
   footer:
   {
+    
     //backgroundColor: "black",
     //height: "100%",
     //width: "100%",
