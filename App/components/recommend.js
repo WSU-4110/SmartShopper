@@ -19,7 +19,7 @@ import { exp } from "react-native/Libraries/Animated/src/Easing";
 
 const db = SQLite.openDatabase("Grocery_Items.db");
 
-export default function Recommend({ submitHandler }) {
+export default function Recommend({ submitHandler, setRecommendVisible }) {
   const [groceryItems, setGroceryItems] = useState([
     { id: 0, name: "", expirationDate: "", price: "", addIt: false },
   ]);
@@ -40,6 +40,7 @@ export default function Recommend({ submitHandler }) {
   };
 
   const recycleWhenPressed = () => {
+    setRecommendVisible(false);
     groceryItems.map((groceryItems) => {
       if (groceryItems.name != null && !isNaN(groceryItems.price)) {
         submitHandler(
@@ -53,13 +54,21 @@ export default function Recommend({ submitHandler }) {
 
   return (
     <View style={styles.container}>
-      <Text style={{ textAlign: "center", marginBottom: 30, color: "coral" }}>
+      <Text
+        style={{
+          textAlign: "center",
+          marginBottom: 30,
+          color: "coral",
+          fontSize: 20,
+          fontWeight: "bold",
+        }}
+      >
         Items from previous list:
       </Text>
       <View style={styles.flexRow}></View>
       <ScrollView>
         {groceryItems.map(({ id, name, expirationDate, price, addIt }) => (
-          <TouchableOpacity style = {styles.enter}
+          <TouchableOpacity
             key={id}
             style={styles.itemcontainer}
             onPressItem={(id) =>
@@ -68,25 +77,14 @@ export default function Recommend({ submitHandler }) {
           >
             {/* These are the values coming from the database */}
             <Text style={styles.itemTextName}>{name}</Text>
-            <Text style={styles.itemTextName}>{id}</Text>
+
             <Text style={styles.itemText}>
-              Expires on: <Text style={styles.bold}>{expirationDate}</Text>
+              Previous Cost: <Text style={styles.bold}>{price}</Text>
             </Text>
-            <Text style={styles.itemText}>
-              Cost: <Text style={styles.bold}>{price}</Text>
-            </Text>
-            <Text style={styles.itemText}>
-              Cost: <Text style={styles.bold}>{addIt}</Text>
-            </Text>
-            {addIt ? (
-              <Text style={styles.bold}>True</Text>
-            ) : (
-              <Text style={styles.bold}>False</Text>
-            )}
           </TouchableOpacity>
         ))}
       </ScrollView>
-  
+
       <TouchableOpacity style={styles.doneBtn} onPress={recycleWhenPressed}>
         <Text>Recycle Items</Text>
       </TouchableOpacity>
@@ -96,12 +94,9 @@ export default function Recommend({ submitHandler }) {
 
 const styles = StyleSheet.create({
   container: {
-    height: 450,
+    height: 425,
     marginBottom: 50,
-  },
-
-  enter: {
-    
+    backgroundColor: "#252525",
   },
 
   doneBtn: {
@@ -127,10 +122,10 @@ const styles = StyleSheet.create({
     color: "coral",
   },
   itemcontainer: {
-    backgroundColor: "#252525",
+    backgroundColor: "#1f1f1f",
     borderRadius: 5,
     padding: 10,
-    marginBottom: 10,
+    marginBottom: 5,
   },
   itemText: {
     color: "lightgrey",
