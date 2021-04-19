@@ -1,13 +1,20 @@
 import React from "react";
-import { ScrollView, Image, StyleSheet, Text, View, TouchableOpacity, FlatLis, TextInput } from "react-native";
+import {
+  ScrollView,
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  FlatLis,
+  TextInput,
+} from "react-native";
 //import Items from "../components/Items.js";
 import Constants from "expo-constants";
 import * as Animatable from "react-native-animatable";
 import Icon from "react-native-vector-icons/Ionicons";
 import { MaterialIcons } from "@expo/vector-icons";
 import styles from "../../Styling/DbComponent";
-
-
 
 import * as SQLite from "expo-sqlite";
 
@@ -21,7 +28,9 @@ export default class DataBaseComponent extends React.Component {
   //if there is not a table in the database, then create one
   componentDidMount() {
     db.transaction((tx) => {
-      tx.executeSql("create table if not exists items (id integer primary key not null, name text, expirationDate date, price text);");
+      tx.executeSql(
+        "create table if not exists items (id integer primary key not null, name text, expirationDate date, price text);"
+      );
     });
   }
 
@@ -34,15 +43,28 @@ export default class DataBaseComponent extends React.Component {
 
     //attributes line up with the quesiton marks in the corresponding order
     db.transaction((tx) => {
-      tx.executeSql("insert into items (name, expirationDate, price) values (?, ?, ?)", [name, expirationDate, price]);
-      tx.executeSql("select * from items", [], (_, { rows }) => console.log(JSON.stringify(rows)));
+      tx.executeSql(
+        "insert into items (name, expirationDate, price) values (?, ?, ?)",
+        [name, expirationDate, price]
+      );
+      tx.executeSql("select * from items", [], (_, { rows }) =>
+        console.log(JSON.stringify(rows))
+      );
     }, null);
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Animatable.View animation="slideInRight" duration={900} style={{ height: 100, justifyContent: "center", paddingHorizontal: 5 }}>
+        <Animatable.View
+          animation="slideInRight"
+          duration={900}
+          style={{
+            height: 100,
+            justifyContent: "center",
+            paddingHorizontal: 5,
+          }}
+        >
           <Text style={styles.headerText}> Your Saved List</Text>
 
           {/*Search bar animations */}
@@ -60,7 +82,10 @@ export default class DataBaseComponent extends React.Component {
             <Animatable.View animation="fadeInRight">
               <Icon name="ios-search" style={{ fontSize: 12 }} />
             </Animatable.View>
-            <TextInput placeholder="Tap to Search" style={{ fontSize: 15, marginLeft: 15, flex: 1 }} />
+            <TextInput
+              placeholder="Tap to Search"
+              style={{ fontSize: 15, marginLeft: 15, flex: 1 }}
+            />
           </Animatable.View>
         </Animatable.View>
         <TouchableOpacity
@@ -88,7 +113,6 @@ const deleteFromDB = () => {
   });
 };
 
-
 class Items extends React.Component {
   constructor() {
     super();
@@ -112,8 +136,8 @@ class Items extends React.Component {
     }
     else {
       this.setState({
-        ColorHolder: "#252525"
-      })
+        ColorHolder: "#252525",
+      });
     }
   }
 
@@ -150,8 +174,9 @@ class Items extends React.Component {
   //retrieving everything from the database, then putting them into an array and storing it in the state
   update() {
     db.transaction((tx) => {
-      tx.executeSql(`select * from items;`, [], (_, { rows: { _array } }) => this.setState({ items: _array }));
+      tx.executeSql(`select * from items;`, [], (_, { rows: { _array } }) =>
+        this.setState({ items: _array })
+      );
     });
   }
 }
-
