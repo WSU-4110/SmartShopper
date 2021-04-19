@@ -1,8 +1,7 @@
 import React from "react";
 import * as Animatable from "react-native-animatable";
 import styles from "../Styling/HistoryStyling";
-import { ScrollView, Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import Constants from "expo-constants";
+import { ScrollView, Text, View, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as SQLite from "expo-sqlite";
 
@@ -51,6 +50,7 @@ class HistoryItems extends React.Component {
     });
   }
 }
+
 const handleDeleteBtn = () => {
   hdb.transaction((tx) => {
     tx.executeSql("DELETE FROM historyitems");
@@ -61,21 +61,21 @@ export default class HistoryDataBase extends React.Component {
     name: null,
   };
 
-  //if there is not a table in the database, then create one
+  //If there is not a table in the database, then create one
   componentDidMount() {
     hdb.transaction((tx) => {
       tx.executeSql("create table if not exists historyitems (id integer primary key not null, name text, expirationDate text, price text);");
     });
   }
 
-  //adding the items to the database
+  //Adding the items to the database
   add(name, expirationDate, price) {
     // is name empty?
     if (name === null || name === "") {
       return false;
     }
 
-    //attributes line up with the quesiton marks in the corresponding order
+    //Attributes line up with the question marks in the corresponding order
     hdb.transaction((tx) => {
       tx.executeSql("insert into historyitems (name, expirationDate, price) values (?, ?, ?)", [name, expirationDate, price]);
       tx.executeSql("select * from historyitems", [], (_, { rows }) => console.log(JSON.stringify(rows)));
@@ -84,7 +84,7 @@ export default class HistoryDataBase extends React.Component {
 
   render() {
     return (
-      //content that is displayed when you are first open the page
+      //Content that is displayed when you are first open the page
       <View style={styles.container}>
         <Animatable.View animation="slideInRight" duration={900} style={{ marginTop: 5, height: 100, justifyContent: "center" }}>
           <TouchableOpacity
@@ -95,9 +95,10 @@ export default class HistoryDataBase extends React.Component {
           >
             <MaterialIcons name="delete" size={50} color="white" />
           </TouchableOpacity>
-          {/*Should we have History since it already says history in the status bar? */}
+          {/**Should we have History since it already says history in the status bar? */}
           <Text style={styles.heading}>History List</Text>
-          {/*This text slides in just after the above line for an added affect */}
+
+          {/**This text slides in just after the above line for an added affect */}
           <Animatable.View animation="slideInRight" duration={1000} style={{ marginTop: -13, justifyContent: "center" }}>
             <Text style={{ textAlign: "center", marginBottom: 25, color: "coral" }}>
               A list comprised of everything you've ever entered
@@ -105,7 +106,7 @@ export default class HistoryDataBase extends React.Component {
           </Animatable.View>
         </Animatable.View>
 
-        {/*Now individual items are being displayed*/}
+        {/**Now individual items are being displayed*/}
         <View style={styles.flexRow}></View>
         <ScrollView style={styles.listArea}>
           <HistoryItems />

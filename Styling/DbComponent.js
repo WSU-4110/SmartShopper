@@ -92,7 +92,8 @@ export default StyleSheet.create({
     },
 
     deleteBtn: {
-      marginLeft: 330,
+      marginLeft: 315,
+      marginTop: -30,
     },
 
     itemChecked: {

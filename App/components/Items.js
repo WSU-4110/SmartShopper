@@ -6,6 +6,7 @@ import styles from "../../Styling/ItemStyling";
 export default function Items({ pressHandler, item }) {
   return (
     <View>
+      {/**Each individual item displayed and how it will appear */}
       <TouchableOpacity style={styles.itemBtn}>
         <Text style={styles.item}>{item.text}</Text>
         <Text style={styles.price}>

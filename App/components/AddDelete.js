@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, Keyboard, FlatList, Text, TouchableWithoutFeedback, TouchableOpacity, View, TextInput } from "react-native";
+import { Alert, Keyboard, FlatList, Text, TouchableWithoutFeedback, TouchableOpacity, View } from "react-native";
 import Items from "../components/Items.js";
 import Add from "../components/Add.js";
 import * as Animatable from "react-native-animatable";
@@ -43,12 +43,16 @@ export default function AddDelete() {
     else if (text.length > 1) {
       setTodos((prevTodos) => {
         setVisible(false);
+
         return [
           { text, price, exp, key: Math.random().toString() },
           ...prevTodos,
         ];
       });
-    } else {
+
+    }
+
+    else {
       Alert.alert("Alert!", "Input must be over 1 character long", [
         { text: "OK", onPress: () => console.log("alert closed") },
       ]);

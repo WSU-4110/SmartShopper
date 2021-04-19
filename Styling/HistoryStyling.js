@@ -52,8 +52,9 @@ export default StyleSheet.create({
     marginBottom: 16,
     marginHorizontal: 16,
   },
+
   deleteBtn: {
-    marginLeft: 360,
-    top: 65,
+    marginLeft: 320,
+    top: 5,
   }
 });

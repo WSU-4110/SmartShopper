@@ -1,9 +1,11 @@
 import React from "react";
-import { ScrollView, Image, Text, View, TouchableOpacity, FlatLis, TextInput } from "react-native";
+import { ScrollView, Text, View, TouchableOpacity, TextInput } from "react-native";
 import * as Animatable from "react-native-animatable";
 import Icon from "react-native-vector-icons/Ionicons";
 import styles from "../../Styling/DbComponent";
 import * as SQLite from "expo-sqlite";
+import { MaterialIcons } from "@expo/vector-icons";
+
 
 const db = SQLite.openDatabase("Grocery_Items.db");
 export default class DataBaseComponent extends React.Component {
@@ -95,7 +97,7 @@ export default class DataBaseComponent extends React.Component {
   }
 }
 
-// this is deletes the entire table from the database
+//This is deletes the entire table from the database
 const deleteFromDB = () => {
   db.transaction((tx) => {
     tx.executeSql("DELETE FROM items");
