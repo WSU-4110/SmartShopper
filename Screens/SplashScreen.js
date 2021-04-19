@@ -31,7 +31,7 @@ export default class App extends Component {
           marginHorizontal: 40,
         }}>
         <Image
-          source={require('./assets/Cart.jpg',
+          source={require('../assets/Cart.jpg',
           )}
           style={{ width: 100, height: 100 }}
         />
