@@ -28,7 +28,7 @@ import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
 ```
 
-There are a few things that you need to do in order to run a notification. The first is to create an expo account at https://expo.io, make a project and name it 'smartshopper' in the slug section, change the device token in your code editor, and lastly log into expo through the terminal through 'expo login'
+There are a couple things that you need to do in order to run a notification. The first is to create an expo account at https://expo.io, make a project and name it 'smartshopper' in the slug section, change the device token in your code editor, and lastly log into expo through the terminal through 'expo login'
 
 For YOUR_PUSH_TOKEN, change it to your device token when you click the push button. Once you click on the push button, your device token will pop up in the terminal and that is what you can change it to.
 ``` bash
