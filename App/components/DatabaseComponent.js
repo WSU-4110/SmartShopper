@@ -1,38 +1,31 @@
 import React from "react";
-import { ScrollView, Image, StyleSheet, Text, View, TouchableOpacity, FlatLis, TextInput } from "react-native";
-//import Items from "../components/Items.js";
-import Constants from "expo-constants";
+import { ScrollView, Image, Text, View, TouchableOpacity, FlatLis, TextInput } from "react-native";
 import * as Animatable from "react-native-animatable";
 import Icon from "react-native-vector-icons/Ionicons";
-import { MaterialIcons } from "@expo/vector-icons";
 import styles from "../../Styling/DbComponent";
-
-
-
 import * as SQLite from "expo-sqlite";
 
 const db = SQLite.openDatabase("Grocery_Items.db");
-
 export default class DataBaseComponent extends React.Component {
   state = {
     name: null,
   };
 
-  //if there is not a table in the database, then create one
+  //If there is not a table in the database, then create one
   componentDidMount() {
     db.transaction((tx) => {
       tx.executeSql("create table if not exists items (id integer primary key not null, name text, expirationDate date, price text);");
     });
   }
 
-  //adding the items to the database
+  //Adding the items to the database
   add(name, expirationDate, price) {
     // is name empty?
     if (name === null || name === "") {
       return false;
     }
 
-    //attributes line up with the quesiton marks in the corresponding order
+    //Attributes line up with the question marks in the corresponding order
     db.transaction((tx) => {
       tx.executeSql("insert into items (name, expirationDate, price) values (?, ?, ?)", [name, expirationDate, price]);
       tx.executeSql("select * from items", [], (_, { rows }) => console.log(JSON.stringify(rows)));
@@ -45,7 +38,7 @@ export default class DataBaseComponent extends React.Component {
         <Animatable.View animation="slideInRight" duration={900} style={{ height: 100, justifyContent: "center", paddingHorizontal: 5 }}>
           <Text style={styles.headerText}> Your Saved List</Text>
 
-          {/*Search bar animations */}
+          {/**Search bar animations */}
           <Animatable.View animation="slideInRight" duration={1000} style={{
               height: 10,
               marginTop: 20,
@@ -57,12 +50,15 @@ export default class DataBaseComponent extends React.Component {
               flex: 0.3,
             }}
           >
+            {/**Adding text and items to the search bar */}
             <Animatable.View animation="fadeInRight">
               <Icon name="ios-search" style={{ fontSize: 12 }} />
             </Animatable.View>
             <TextInput placeholder="Tap to Search" style={{ fontSize: 15, marginLeft: 15, flex: 1 }} />
           </Animatable.View>
         </Animatable.View>
+
+        {/**Button to delete the list to start fresh */}
         <TouchableOpacity
           style={styles.deleteBtn}
           onPress={() => {
@@ -89,7 +85,8 @@ const deleteFromDB = () => {
 };
 
 
-class Items extends React.Component 
+//Individual items that will be displayed on the screen
+class Items extends React.Component
 {
   constructor() {
   super();
@@ -105,7 +102,7 @@ class Items extends React.Component
 
   markItemOwned=()=>{
     if(this.state.ColorHolder != "coral"){
-      
+
       this.setState({
         ColorHolder: "coral"
       })
@@ -116,7 +113,7 @@ class Items extends React.Component
       })
     }
   }
-  
+
   render() {
     const { items } = this.state;
 
@@ -124,14 +121,15 @@ class Items extends React.Component
       return null;
     }
 
-    {/*Displaying database on the page */}
+    {/**Displaying database on the page */}
     return (
       <View style={styles.sectionContainer}>
-        {/* Map loop to iterate through the database and show them in a Text component */}
+        {/**Map loop to iterate through the database and show them in a Text component */}
         <View>
           {items.map(({ id, name, expirationDate, price }) => (
-            <TouchableOpacity key={id} style={styles.itemcontainer,{backgroundColor: this.state.ColorHolder}} onPress={this.markItemOwned}>
-            {/* These are the values coming from the database */}
+            <TouchableOpacity key={id} style={styles.itemcontainer,{backgroundColor: this.state.ColorHolder,
+            borderRadius: 5, padding: 10, marginBottom: 10 }} onPress={this.markItemOwned}>
+            {/**These are the values coming from the database */}
 
             <Text style={styles.itemTextName}>{name}</Text>
             <Text style={styles.itemText}>
@@ -147,7 +145,7 @@ class Items extends React.Component
     );
   }
 
-  //retrieving everything from the database, then putting them into an array and storing it in the state
+  //Retrieving everything from the database, then putting them into an array and storing it in the state
   update() {
     db.transaction((tx) => {
       tx.executeSql(`select * from items;`, [], (_, { rows: { _array } }) => this.setState({ items: _array }));
