@@ -48,11 +48,6 @@ componentDidMount() {
     //this._notificationSubscription = Notifications.addListener(this._handleNotification);
   }
 ```
-**An easy to use shopping app, designed to help shoppers at the grocery store.**
-
-Progress: Add items implementation.
-
-Current working version of the App.
 
 This will show the splash screen for our application.
 Added Database Functionality
