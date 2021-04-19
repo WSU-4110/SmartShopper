@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fa327e91-f44f-40df-a1ee-efb4e362f6e8" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1q7zPpS8F6O9sB2ka9peDYAJrdZ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fa327e91-f44f-40df-a1ee-efb4e362f6e8" name="Default Changelist" comment="" />
+      <created>1616445395287</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1616445395287</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="99" y="100" width="1240" height="700" key="AVDManager" timestamp="1616449006877">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="99" y="100" width="1240" height="700" key="AVDManager/0.0.1440.900@0.0.1440.900" timestamp="1616449006877" />
+    <state x="307" y="161" key="IDE.errors.dialog" timestamp="1616447099990">
+      <screen x="0" y="0" width="1440" height="828" />
+    </state>
+    <state x="307" y="161" key="IDE.errors.dialog/0.0.1440.828@0.0.1440.828" timestamp="1616447099990" />
+    <state x="221" y="86" key="SettingsEditor" timestamp="1616448624035">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="221" y="86" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1616448624035" />
+    <state x="385" y="152" key="search.everywhere.popup" timestamp="1616445537729">
+      <screen x="0" y="0" width="1440" height="828" />
+    </state>
+    <state x="385" y="152" key="search.everywhere.popup/0.0.1440.828@0.0.1440.828" timestamp="1616445537729" />
+  </component>
+</project>

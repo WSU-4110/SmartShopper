@@ -5,6 +5,8 @@ import AddDelete from "../App/components/AddDelete.js";
 import Expiration from "../Screens/Expiration";
 import History from "../Screens/History";
 import DataBaseComponent from "../App/components/DatabaseComponent.js";
+import Push from "../App/components/Push.js";
+
 
 const screens = {
   Home: {
@@ -18,6 +20,9 @@ const screens = {
   },
   History: {
     screen: History, //Enter History here; I've been switching this value with DatabaseComponent for debugging purposes and viewing the database.
+  },
+  Push: {
+    screen: Push,
   },
 };
 

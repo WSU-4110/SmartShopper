@@ -1,4 +1,6 @@
 import React from "react";
+import * as Animatable from "react-native-animatable";
+import styles from "../Styling/HistoryStyling";
 import { ScrollView, Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Constants from "expo-constants";
 import * as SQLite from "expo-sqlite";
@@ -81,8 +83,10 @@ export default class HistoryDataBase extends React.Component {
 
   render() {
     return (
+      //content that is displayed when you are first open the page
       <View style={styles.container}>
-        <TouchableOpacity
+        <Animatable.View animation="slideInRight" duration={900} style={{marginTop: 5, height: 100, justifyContent: "center"}}>
+            <TouchableOpacity
           style={styles.deleteBtn}
           onPress={() => {
             handleDeleteBtn();
@@ -90,8 +94,17 @@ export default class HistoryDataBase extends React.Component {
         >
           <Image source={require("../assets/del.webp")} style={styles.btnImage} />
         </TouchableOpacity>
-        <Text style={styles.heading}>History Of Items Saved</Text>
-        <Text style={{ textAlign: "center", marginBottom: 30, color: "coral" }}>This is a list comprised of everything you've ever entered.</Text>
+          {/*Should we have History since it already says history in the status bar? */}
+          <Text style={styles.heading}>History List</Text>
+          {/*This text slides in just after the above line for an added affect */}
+          <Animatable.View animation="slideInRight" duration={1000} style={{marginTop: -13, justifyContent: "center"}}>
+            <Text style={{textAlign: "center", marginBottom: 25, color: "coral" }}>
+            A list comprised of everything you've ever entered
+            </Text>
+          </Animatable.View>
+        </Animatable.View>
+
+      {/*Now individual items are being displayed*/}
         <View style={styles.flexRow}></View>
         <ScrollView style={styles.listArea}>
           <HistoryItems />
@@ -101,51 +114,3 @@ export default class HistoryDataBase extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  bold: { fontWeight: "bold" },
-  container: {
-    backgroundColor: "#252525",
-    flex: 1,
-    paddingTop: Constants.statusBarHeight,
-  },
-  btnImage: {
-    height: 50,
-    left: 7,
-    width: 50,
-  },
-  heading: {
-    fontSize: 26,
-    fontWeight: "bold",
-    textAlign: "center",
-    paddingBottom: 30,
-    color: "coral",
-  },
-  historyitemcontainer: {
-    backgroundColor: "#252525",
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
-  },
-  historyItemText: {
-    color: "lightgrey",
-    marginBottom: 5,
-  },
-  historyItemTextName: {
-    color: "lightgrey",
-    fontSize: 25,
-    marginBottom: 5,
-  },
-  flexRow: {
-    flexDirection: "row",
-  },
-
-  listArea: {
-    backgroundColor: "#1f1f1f",
-    flex: 1,
-    paddingTop: 16,
-  },
-  sectionContainer: {
-    marginBottom: 16,
-    marginHorizontal: 16,
-  },
-});

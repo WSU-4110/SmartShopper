@@ -4,9 +4,8 @@ import { StyleSheet, Text, View, TouchableOpacity, Vibration, Platform } from 'r
 import CustomButton from './App code/CustomButton';//needed library for custom buttons to work
 import AddDelete from "./App/components/AddDelete.js";
 import Navigator from "./routes/homeStack";
-import { Notifications } from 'expo';
-import * as Permissions from 'expo-permissions';
-import Constants from 'expo-constants';
+import Push from "./App/components/Push.js";
+
 
 export default function App() {
     return(

@@ -10,6 +10,8 @@ import HistoryDataBase from "../../Screens/History.js";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Recommend from "../components/recommend.js";
+import styles from "../../Styling/AddDeleteStyling";
+
 
 export default function AddDelete() {
   const [todos, setTodos] = useState([]);
@@ -75,29 +77,9 @@ export default function AddDelete() {
         {/**Animatable.View is incorporated to give animation to the search bar coming into view*/}
         {/**Icon is used to add an icon in the search bar*/}
         <View style={styles.header}>
-          <Animatable.View animation="slideInRight" duration={1000} style={{ height: 150, justifyContent: "center", paddingHorizontal: 5 }}>
+          <Animatable.View animation="slideInRight" duration={900} style={{ height: 150, justifyContent: "center", paddingHorizontal: 5 }}>
             <Text style={styles.headerText}> Create Your List </Text>
-
-            <Animatable.View
-              animation="slideInRight"
-              duration={1000}
-              style={{
-                height: 50,
-                marginTop: 0,
-                paddingVertical: 20,
-                backgroundColor: "white",
-                flexDirection: "row",
-                padding: 5,
-                alignItems: "center",
-                flex: 0.3,
-              }}
-            >
-              <Animatable.View animation="fadeInRight">
-                <Icon name="ios-search" style={{ fontSize: 12 }} />
-              </Animatable.View>
-              <TextInput placeholder="Tap to Search" style={{ fontSize: 15, marginLeft: 15, flex: 1 }} />
-            </Animatable.View>
-          </Animatable.View>
+          </Animatable.View>   
         </View>
         {/**Container containing the list and the add list item window */}
         <View style={styles.content}>
@@ -110,12 +92,14 @@ export default function AddDelete() {
           {/* ///////////////////////////////////////////////////////////////////////// */}
 
           {saveVisible ? (
+            //Save confirmation window
             <View style={styles.saveWindow}>
               <Text style={styles.saveTitle}>Are you sure?</Text>
               <Text style={styles.saveMessage}>
                 By pressing the "Save List" button, your list will be saved under MyList. Your items will also be saved to History.
               </Text>
 
+              {/*Button for save operation */}
               <TouchableOpacity
                 style={styles.saveConfirmBtn}
                 onPress={() => {
@@ -125,6 +109,8 @@ export default function AddDelete() {
               >
                 <Text>Save List</Text>
               </TouchableOpacity>
+
+              {/*Button to cancel save operation */}
               <TouchableOpacity
                 style={styles.cancelBtn}
                 onPress={() => {
@@ -157,254 +143,51 @@ export default function AddDelete() {
             <FlatList style={styles.listItems} data={todos} renderItem={({ item }) => <Items item={item} pressHandler={pressHandler} />} />
           </View>
         </View>
-        {/**Footer View */}
-        <View style={styles.footer}></View>
-        {/**Add "+" button */}
-        <TouchableOpacity
-          style={styles.addButton}
-          onPress={() => {
-            setVisible(true);
-          }}
-        >
-          <MaterialIcons name="add-shopping-cart" size={30} color="white" />
-        </TouchableOpacity>
 
-        {/**Save "SAVE" button
-         * This button saves the whole list into the database
-         */}
-        <TouchableOpacity
-          style={styles.saveButton}
-          onPress={() => {
-            setSaveVisible(true);
-          }}
-        >
-          <MaterialIcons name="save-alt" size={28} color="white" />
-        </TouchableOpacity>
-
-        {/**"Recommended" button
-         * This button takes from the databasecomponent.js database and recommends new items as the user makes a new list.
-         */}
-        <TouchableOpacity
-          style={styles.recommendButton}
-          onPress={() => {
-            setRecommendVisible(true);
-          }}
-        >
-          <MaterialCommunityIcons
-            name="recycle-variant"
-            size={28}
-            color="white"
-          />
-        </TouchableOpacity>
+        {/*Footer View that houses the 3 buttons*/}
+        <View style={styles.footer}>
+          {/**Add "+" button */}
+          <Animatable.View animation="slideInRight" duration={1000} style={{ height: 120, justifyContent: "center", paddingHorizontal: 5 }}>
+            <TouchableOpacity
+                style={styles.addButton}
+                onPress={() => {
+                  setVisible(true);
+                }}
+              >
+                <MaterialIcons name="add-shopping-cart" size={30} color="white" />
+              </TouchableOpacity>
+          
+            {/**Save "SAVE" button
+             * This button saves the whole list into the database
+             */}
+            <TouchableOpacity
+              style={styles.saveButton}
+              onPress={() => {
+                setSaveVisible(true);
+              }}
+            >
+              <MaterialIcons name="save-alt" size={28} color="white" />
+            </TouchableOpacity>
+            {/**"Recommended" button
+           * This button takes from the databasecomponent.js database and recommends new items as the user makes a new list.
+           */}
+           
+            <TouchableOpacity
+              style={styles.recommendButton}
+              onPress={() => {
+                setRecommendVisible(true);
+              }}
+            >
+              <MaterialCommunityIcons
+                name="recycle-variant"
+                size={28}
+                color="white"
+              />
+            </TouchableOpacity>
+          </Animatable.View>
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );
 }
 
-const styles = StyleSheet.create({
-  cancelBtn: {
-    marginTop: 0,
-    color: "coral",
-    width: "100%", //width and height of the circle
-    height: 50,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: "coral",
-    alignItems: "center",
-    justifyContent: "center", //aligning the items in the center of the circle
-  },
-  cancelBtnText: {
-    color: "coral",
-  },
-  container: {
-    flex: 1,
-  },
-  content: {
-    padding: 10, //padding if the footer is present
-    //padding: 20,  //padding if there is no footer
-    backgroundColor: "#1f1f1f",
-  },
-  header: {
-    backgroundColor: "#252525",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  headerText: {
-    height: 10,
-    //marginTop: -20,
-    color: "white",
-    //fontSize: 18,
-    marginTop: 10,
-    fontSize: 25,
-    padding: 26,
-    fontWeight: "bold",
-    color: "coral",
-  },
-  footer: {
-    position: "absolute",
-    backgroundColor: "#222222",
-    height: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    zIndex: 10,
-  },
-  addButton: {
-    position: "absolute", //fixed at a certain part of the screen
-    zIndex: 11, //added z index of 11 so it is displayed on the top of all of the other components
-    right: 20, //we added rigth and bottom because we want the button to be on the bottom right of the screen
-    bottom: 100,
-    backgroundColor: "coral",
-    width: 70, //width and height of the circle
-    height: 70,
-    borderRadius: 50,
-    alignItems: "center",
-    justifyContent: "center", //aligning the items in the center of the circle
-    elevation: 8,
-
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 4.65,
-
-    elevation: 8,
-  },
-
-  recommendButton: {
-    position: "absolute", //fixed at a cetain part of the screen
-    zIndex: 11, //added z index of 11 so it is displayed on the top of all of the other components
-    right: 20, //we added rigth and bottom because we want the button to be on the bottom right of the screen
-    bottom: 300,
-    backgroundColor: "coral",
-    width: 70, //width and height of the circle
-    height: 70,
-    borderRadius: 50,
-    alignItems: "center",
-    justifyContent: "center", //aligning the items in the center of the circle
-    elevation: 8,
-
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 4.65,
-
-    elevation: 8,
-  },
-  recommendCancelBtn: {
-    marginTop: -35,
-    color: "coral",
-    width: "100%", //width and height of the circle
-    height: 50,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: "coral",
-    alignItems: "center",
-    justifyContent: "center", //aligning the items in the center of the circle
-  },
-  cancelBtnText: {
-    color: "coral",
-  },
-  recommendWindow: {
-    position: "absolute",
-    width: "90%",
-    margin: "5%",
-    top: -10,
-    right: 10,
-    zIndex: 11,
-    padding: 20,
-    height: 550,
-    borderRadius: 10,
-    backgroundColor: "#252525",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 12,
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 16.0,
-
-    elevation: 24,
-  },
-  saveButton: {
-    position: "absolute", //fixed at a cetain part of the screen
-    zIndex: 11, //added z index of 11 so it is displayed on the top of all of the other components
-    right: 20, //we added rigth and bottom because we want the button to be on the bottom right of the screen
-    bottom: 200,
-    backgroundColor: "coral",
-    width: 70, //width and height of the circle
-    height: 70,
-    borderRadius: 50,
-    alignItems: "center",
-    justifyContent: "center", //aligning the items in the center of the circle
-    elevation: 8,
-
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 4.65,
-
-    elevation: 8,
-  },
-  saveConfirmBtn: {
-    color: "#fff",
-    backgroundColor: "coral",
-    width: "100%", //width and height of the circle
-    height: 50,
-    borderRadius: 10,
-    alignItems: "center",
-    justifyContent: "center", //aligning the items in the center of the circle
-  },
-  saveWindow: {
-    position: "absolute",
-    width: "90%",
-    margin: "5%",
-    top: 0,
-    right: 10,
-    zIndex: 11,
-    padding: 20,
-    height: 375,
-    borderRadius: 10,
-    backgroundColor: "#252525",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 12,
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 16.0,
-
-    elevation: 24,
-  },
-  saveTitle: {
-    fontWeight: "bold",
-    color: "lightgrey",
-    textAlign: "center",
-    fontSize: 30,
-    marginBottom: 15,
-    marginTop: 15,
-  },
-  saveMessage: {
-    color: "lightgrey",
-    textAlign: "center",
-    fontSize: 20,
-    marginBottom: 40,
-    marginTop: 30,
-  },
-  addContainer: {
-    backgroundColor: "black",
-  },
-  listItems: {
-    height: 700,
-    paddingLeft: 3,
-    paddingBottom: 500,
-  },
-});

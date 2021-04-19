@@ -10,6 +10,7 @@ const CustomButton = (props) => {
   return <TouchableOpacity onPress={props.onPress}>{content}</TouchableOpacity>;
 };
 
+
 const styles = StyleSheet.create({
   button: {
     padding: 42, //can be adjustible to fit screen depending on how many buttons are present on the homescreen
@@ -22,4 +23,6 @@ const styles = StyleSheet.create({
   },
 });
 
+
 export default CustomButton;
+

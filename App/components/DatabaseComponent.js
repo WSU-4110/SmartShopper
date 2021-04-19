@@ -1,7 +1,13 @@
 import React from "react";
-import { ScrollView, Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { ScrollView, Image, StyleSheet, Text, View, TouchableOpacity, FlatLis, TextInput } from "react-native";
 //import Items from "../components/Items.js";
 import Constants from "expo-constants";
+import * as Animatable from "react-native-animatable";
+import Icon from "react-native-vector-icons/Ionicons";
+import { MaterialIcons } from "@expo/vector-icons";
+import styles from "../../Styling/DbComponent";
+
+
 
 import * as SQLite from "expo-sqlite";
 
@@ -36,9 +42,27 @@ export default class DataBaseComponent extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.heading}>My List</Text>
-        <Text style={styles.headingDiscp}>This is your current working shopping list!</Text>
+        <Animatable.View animation="slideInRight" duration={900} style={{ height: 100, justifyContent: "center", paddingHorizontal: 5 }}>
+          <Text style={styles.headerText}> Your Saved List</Text>
 
+          {/*Search bar animations */}
+          <Animatable.View animation="slideInRight" duration={1000} style={{
+              height: 10,
+              marginTop: 20,
+              paddingVertical: 0,
+              backgroundColor: "white",
+              flexDirection: "row",
+              padding: 5,
+              alignItems: "center",
+              flex: 0.3,
+            }}
+          >
+            <Animatable.View animation="fadeInRight">
+              <Icon name="ios-search" style={{ fontSize: 12 }} />
+            </Animatable.View>
+            <TextInput placeholder="Tap to Search" style={{ fontSize: 15, marginLeft: 15, flex: 1 }} />
+          </Animatable.View>
+        </Animatable.View>
         <TouchableOpacity
           style={styles.deleteBtn}
           onPress={() => {
@@ -100,11 +124,13 @@ class Items extends React.Component
       return null;
     }
 
+    {/*Displaying database on the page */}
     return (
       <View style={styles.sectionContainer}>
         {/* Map loop to iterate through the database and show them in a Text component */}
-        {items.map(({ id, name, expirationDate, price }) => (
-          <TouchableOpacity key={id} style={styles.itemcontainer,{backgroundColor: this.state.ColorHolder}} onPress={this.markItemOwned}>
+        <View>
+          {items.map(({ id, name, expirationDate, price }) => (
+            <TouchableOpacity key={id} style={styles.itemcontainer,{backgroundColor: this.state.ColorHolder}} onPress={this.markItemOwned}>
             {/* These are the values coming from the database */}
 
             <Text style={styles.itemTextName}>{name}</Text>
@@ -116,6 +142,7 @@ class Items extends React.Component
             </Text>
           </TouchableOpacity>
         ))}
+        </View>
       </View>
     );
   }
@@ -128,65 +155,3 @@ class Items extends React.Component
   }
 }
 
-const styles = StyleSheet.create({
-  bold: {
-    fontWeight: "bold",
-  },
-  container: {
-    backgroundColor: "coral",
-    flex: 1,
-    paddingTop: Constants.statusBarHeight,
-  },
-  heading: {
-    fontSize: 26,
-    fontWeight: "bold",
-    textAlign: "center",
-    paddingBottom: 0,
-    color: "white",
-  },
-  headingDiscp: {
-    textAlign: "center",
-    marginBottom: 30,
-    color: "white",
-  },
-  btnImage: {
-    height: 50,
-    left: 7,
-    width: 50,
-  },
-  deleteBtn: {
-    marginLeft: 330,
-  },
-  itemcontainer: {
-    backgroundColor: "#252525",
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
-  },
-  itemText: {
-    color: "white",
-    marginBottom: 5,
-  },
-  itemTextName: {
-    color: "white",
-    fontWeight: "bold",
-    fontSize: 25,
-    marginBottom: 5,
-  },
-  flexRow: {
-    flexDirection: "row",
-  },
-  listArea: {
-    backgroundColor: "#1f1f1f",
-    flex: 1,
-    paddingTop: 16,
-  },
-  sectionContainer: {
-    marginBottom: 16,
-    marginHorizontal: 16,
-  },
-    itemChecked: {
-    backgroundColor: 'coral',
-    color:'lightgrey',
-  }
-});
