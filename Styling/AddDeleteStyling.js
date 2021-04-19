@@ -22,9 +22,11 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "center", //aligning the items in the center of the circle
   },
+
   container: {
     flex: 1,
   },
+
   content: {
     padding: 10, //padding if the footer is present
     //padding: 20,  //padding if there is no footer
@@ -35,7 +37,7 @@ export default StyleSheet.create({
     backgroundColor: "#252525",
     alignItems: "center",
     justifyContent: "center",
-    height: 100,
+    height: 100
   },
 
   headerText: {
@@ -78,14 +80,13 @@ export default StyleSheet.create({
     },
     shadowOpacity: 0.3,
     shadowRadius: 4.65,
-
     elevation: 8,
   },
 
   recommendButton: {
     position: "absolute", //fixed at a cetain part of the screen
     zIndex: 11, //added z index of 11 so it is displayed on the top of all of the other components
-    left: 159, //we added rigth and bottom because we want the button to be on the bottom right of the screen
+    left: 172, //we added rigth and bottom because we want the button to be on the bottom right of the screen
     bottom: 40,
     backgroundColor: "coral",
     width: 70, //width and height of the circle
@@ -102,7 +103,6 @@ export default StyleSheet.create({
     },
     shadowOpacity: 0.3,
     shadowRadius: 4.65,
-
     elevation: 8,
   },
 
@@ -140,7 +140,6 @@ export default StyleSheet.create({
     },
     shadowOpacity: 0.58,
     shadowRadius: 16.0,
-
     elevation: 24,
   },
 
@@ -164,7 +163,6 @@ export default StyleSheet.create({
     },
     shadowOpacity: 0.3,
     shadowRadius: 4.65,
-
     elevation: 8,
   },
 
@@ -196,9 +194,9 @@ export default StyleSheet.create({
     },
     shadowOpacity: 0.58,
     shadowRadius: 16.0,
-
     elevation: 24,
   },
+
   saveTitle: {
     fontWeight: "bold",
     color: "lightgrey",
@@ -214,6 +212,7 @@ export default StyleSheet.create({
     marginBottom: 40,
     marginTop: 30,
   },
+
   addContainer: {
     backgroundColor: "black",
   },
@@ -224,7 +223,8 @@ export default StyleSheet.create({
     paddingBottom: 500,
   },
 
-  list: {
-    height: 521,
-  },
+  list:
+  {
+    height: 521
+  }
 });
