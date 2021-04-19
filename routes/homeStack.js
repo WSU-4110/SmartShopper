@@ -2,7 +2,6 @@ import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 import Home from "../Screens/Home";
 import AddDelete from "../App/components/AddDelete.js";
-import Expiration from "../Screens/Expiration";
 import History from "../Screens/History";
 import DataBaseComponent from "../App/components/DatabaseComponent.js";
 import Push from "../App/components/Push.js";

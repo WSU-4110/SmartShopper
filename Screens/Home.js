@@ -25,16 +25,16 @@ export default function Home({ navigation }) {
 
   return (
     <View style={title.background}>
-      <CustomButton2 text="Push" onPress={pressHandler3} color="coral"/>
+      <CustomButton2 text="Push" onPress={pressHandler3} color="coral" />
 
       <Text style={title.ShopperTitle}>Smart Shopper</Text>
 
       <View style={title.allignButton}>
         <CustomButton text="Create Lists" onPress={pressHandler} color="coral" />
-        <CustomButton text="Expiration" onPress={pressHandler1} color="coral" />
+        <CustomButton text="My List" onPress={pressHandler1} color="coral" />
         <CustomButton text="History" onPress={pressHandler2} color="coral" />
       </View>
-      <View style = {title.footer}>
+      <View style={title.footer}>
       </View>
     </View>
   );

@@ -10,7 +10,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Recommend from "../components/recommend.js";
 import styles from "../../Styling/AddDeleteStyling";
 
-
 export default function AddDelete() {
   const [todos, setTodos] = useState([]);
 
@@ -44,12 +43,15 @@ export default function AddDelete() {
     else if (text.length > 1) {
       setTodos((prevTodos) => {
         setVisible(false);
-        return [{ text, price, exp, key: Math.random().toString() }, ...prevTodos];
+        return [
+          { text, price, exp, key: Math.random().toString() },
+          ...prevTodos,
+        ];
       });
-    }
-
-    else {
-      Alert.alert("Alert!", "Input must be over 1 character long", [{ text: "OK", onPress: () => console.log("alert closed") }]);
+    } else {
+      Alert.alert("Alert!", "Input must be over 1 character long", [
+        { text: "OK", onPress: () => console.log("alert closed") },
+      ]);
     }
   };
 
@@ -77,7 +79,15 @@ export default function AddDelete() {
       <View style={styles.container}>
         {/**Header container */}
         <View style={styles.header}>
-          <Animatable.View animation="slideInRight" duration={900} style={{ height: 150, justifyContent: "center", paddingHorizontal: 5 }}>
+          <Animatable.View
+            animation="slideInRight"
+            duration={900}
+            style={{
+              height: 150,
+              justifyContent: "center",
+              paddingHorizontal: 5,
+            }}
+          >
             <Text style={styles.headerText}> Create Your List </Text>
           </Animatable.View>
         </View>
@@ -88,8 +98,13 @@ export default function AddDelete() {
           {/**{visible ? (If visible is true, do this command) : (if it is not true, do this command)} */}
 
           {/**Passing functions submitHandler and visibleToggleMain to the add component so they can be used outside of AddDelete*/}
-          {visible ? <Add style={styles.addContainer} submitHandler={submitHandler} visibleToggleMain={visibleToggleMain} /> : null}
-
+          {visible ? (
+            <Add
+              style={styles.addContainer}
+              submitHandler={submitHandler}
+              visibleToggleMain={visibleToggleMain}
+            />
+          ) : null}
           {/* ///////////////////////////////////////////////////////////////////////// */}
 
           {saveVisible ? (
@@ -97,7 +112,8 @@ export default function AddDelete() {
             <View style={styles.saveWindow}>
               <Text style={styles.saveTitle}>Are you sure?</Text>
               <Text style={styles.saveMessage}>
-                By pressing the "Save List" button, your list will be saved under MyList. Your items will also be saved to History.
+                By pressing the "Save List" button, your list will be saved
+                under MyList. Your items will also be saved to History.
               </Text>
 
               {/*Button for save operation */}
@@ -127,7 +143,10 @@ export default function AddDelete() {
 
           {recommendVisible ? (
             <View style={styles.recommendWindow}>
-              <Recommend submitHandler={submitHandler} />
+              <Recommend
+                submitHandler={submitHandler}
+                setRecommendVisible={setRecommendVisible}
+              />
               <TouchableOpacity
                 style={styles.recommendCancelBtn}
                 onPress={() => {
@@ -144,23 +163,37 @@ export default function AddDelete() {
           {/** List container*/}
           <View style={styles.list}>
             {/**Actual List */}
-            <FlatList style={styles.listItems} data={todos} renderItem={({ item }) => <Items item={item} pressHandler={pressHandler} />} />
+            <FlatList
+              style={styles.listItems}
+              data={todos}
+              renderItem={({ item }) => (
+                <Items item={item} pressHandler={pressHandler} />
+              )}
+            />
           </View>
         </View>
 
         {/*Footer View that houses the 3 buttons*/}
         <View style={styles.footer}>
           {/**Add "+" button */}
-          <Animatable.View animation="slideInRight" duration={1000} style={{ height: 120, justifyContent: "center", paddingHorizontal: 5 }}>
+          <Animatable.View
+            animation="slideInRight"
+            duration={1000}
+            style={{
+              height: 120,
+              justifyContent: "center",
+              paddingHorizontal: 5,
+            }}
+          >
             <TouchableOpacity
-                style={styles.addButton}
-                onPress={() => {
-                  setVisible(true);
-                }}
-              >
-                <MaterialIcons name="add-shopping-cart" size={30} color="white" />
-              </TouchableOpacity>
-          
+              style={styles.addButton}
+              onPress={() => {
+                setVisible(true);
+              }}
+            >
+              <MaterialIcons name="add-shopping-cart" size={30} color="white" />
+            </TouchableOpacity>
+
             {/**Save "SAVE" button
              * This button saves the whole list into the database
              */}
@@ -194,4 +227,3 @@ export default function AddDelete() {
     </TouchableWithoutFeedback>
   );
 }
-
