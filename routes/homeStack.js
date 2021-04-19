@@ -5,6 +5,7 @@ import AddDelete from "../App/components/AddDelete.js";
 import History from "../Screens/History";
 import DataBaseComponent from "../App/components/DatabaseComponent.js";
 import Push from "../App/components/Push.js";
+import SplashScreen from "../Screens/SplashScreen";
 
 
 const screens = {
@@ -22,6 +23,9 @@ const screens = {
   },
   Push: {
     screen: Push,
+  },
+  SplashScreen: {
+    screen: SplashScreen,
   },
 };
 
