@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
+//Custom buttons for the homepage buttons
 const CustomButton2 = (props) => {
   const content = (
     <View style={[styles.button2, { backgroundColor: props.color }]}>

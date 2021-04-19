@@ -1,23 +1,21 @@
-import React, { Component } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
-import { ForceTouchGestureHandler } from "react-native-gesture-handler";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 import CustomButton from "../App code/CustomButton"; //needed library for custom buttons to work
-import Add from "../App/components/AddDelete.js";
-import Push from "../App/components/Push.js";
 import CustomButton2 from "../App code/CustomButton2"; //needed library for custom buttons to work
-
-
 
 export default function Home({ navigation }) {
   const pressHandler = () => {
     navigation.navigate("Add");
   };
+
   const pressHandler1 = () => {
     navigation.navigate("Expiration");
   };
+
   const pressHandler2 = () => {
     navigation.navigate("History");
   };
+
   const pressHandler3 = () => {
     navigation.navigate("Push");
   };
@@ -41,13 +39,13 @@ export default function Home({ navigation }) {
 }
 
 
-
 const title = StyleSheet.create({
   background: {
     backgroundColor: "coral",
     height: "100%",
     width: "100%",
   },
+
   ShopperTitle: {
     marginTop: -10,
     textAlign: "center",
@@ -55,6 +53,7 @@ const title = StyleSheet.create({
     color: "white",
     padding: 25,
   },
+
   allignButton: {
     marginLeft: -10,
     marginRight: -10,
@@ -62,6 +61,7 @@ const title = StyleSheet.create({
     padding: 10,
     justifyContent: "center",
   },
+
   footer:
   {
     //backgroundColor: "black",

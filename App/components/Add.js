@@ -10,12 +10,15 @@ export default function Add({ submitHandler, visibleToggleMain }) {
   const changeHandler = (val) => {
     setText(val);
   };
+
   const changeHandler3 = (val) => {
     setExp(val);
-  };
+  }
+
   const changeHandler2 = (val) => {
     setPrice(val);
   };
+
   const pressHandler = () => {
     submitHandler(text, price, exp);
     setExp("");

@@ -78,6 +78,7 @@ export default StyleSheet.create({
       width: 0,
       height: 4,
     },
+
     shadowOpacity: 0.3,
     shadowRadius: 4.65,
     elevation: 8,
@@ -101,6 +102,7 @@ export default StyleSheet.create({
       width: 0,
       height: 4,
     },
+
     shadowOpacity: 0.3,
     shadowRadius: 4.65,
     elevation: 8,
@@ -138,6 +140,7 @@ export default StyleSheet.create({
       width: 0,
       height: 12,
     },
+
     shadowOpacity: 0.58,
     shadowRadius: 16.0,
     elevation: 24,
@@ -161,6 +164,7 @@ export default StyleSheet.create({
       width: 0,
       height: 4,
     },
+
     shadowOpacity: 0.3,
     shadowRadius: 4.65,
     elevation: 8,
@@ -192,6 +196,7 @@ export default StyleSheet.create({
       width: 0,
       height: 12,
     },
+  
     shadowOpacity: 0.58,
     shadowRadius: 16.0,
     elevation: 24,
@@ -205,6 +210,7 @@ export default StyleSheet.create({
     marginBottom: 15,
     marginTop: 15,
   },
+
   saveMessage: {
     color: "lightgrey",
     textAlign: "center",

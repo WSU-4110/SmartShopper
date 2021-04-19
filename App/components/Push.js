@@ -4,30 +4,40 @@ import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
 
-
 export default class Push extends React.Component {
   state = {
     expoPushToken: '',
     notification: {},
   };
 
+  //For IOS and Android, asking for permission to send notifications
+  //The answer is stored and it won't ask twice for the same device
+  //Source from expo.com
   registerForPushNotificationsAsync = async () => {
     if (Constants.isDevice) {
       const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
       let finalStatus = existingStatus;
+
       if (existingStatus !== 'granted') {
         const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
         finalStatus = status;
       }
+
       if (finalStatus !== 'granted') {
         alert('Failed to get push token for push notification!');
         return;
       }
+
+      //Token is what defines each device and needs to be changed each time for this implementation
+      //Explained further in the README.md
       token = await Notifications.getExpoPushTokenAsync();
-      console.log(token);
+      console.log(token);   //Displaying token in the terminal so it can be entered in the code for each device
       this.setState({ expoPushToken: token });
-    } else {
-      alert('Must use physical device for Push Notifications');
+    }
+
+    //Won't run on an emulator
+    else {
+      alert('Must use physical devices for Push Notifications');
     }
 
     if (Platform.OS === 'android') {
@@ -42,13 +52,6 @@ export default class Push extends React.Component {
 
   componentDidMount() {
     this.registerForPushNotificationsAsync();
-
-    // Handle notifications that are received or selected while the app
-    // is open. If the app was closed and then opened by tapping the
-    // notification (rather than just tapping the app icon to open it),
-    // this function will fire on the next tick after the app starts
-    // with the notification data.
-    //this._notificationSubscription = Notifications.addListener(this._handleNotification);
   }
 
   _handleNotification = notification => {
@@ -57,18 +60,22 @@ export default class Push extends React.Component {
     this.setState({ notification: notification });
   };
 
-  // Can use this function below, OR use Expo's Push Notification Tool-> https://expo.io/dashboard/notifications
+  //Sending notification through code rather than the website
   sendPushNotification = async () => {
-    //the next 3 lines are essential to get the notification to work
-    const YOUR_PUSH_TOKEN = 'FjUxq4Ohw8XmDnaBWlSgsh';
+    //The next 3 lines are essential to get the notification to work
+    const YOUR_PUSH_TOKEN = 'FjUxq4Ohw8XmDnaBWlSgsh';   //Taken from the terminal from 'data:'
+                                                        //Must change if you want a notification on your
+                                                        //device
     const message = {
       to: "ExponentPushToken[" + YOUR_PUSH_TOKEN +"]",
       sound: 'default',
-      title: 'BOOOYAH',
-      body: 'Push it',
+      title: 'SmartShopper',
+      body: 'Time to get some groceries!',
       data: { data: 'goes here' },
       _displayInForeground: true,
     };
+
+    //Handled from the expo library and server
     const response = await fetch('https://exp.host/--/api/v2/push/send', {
       method: 'POST',
       headers: {
@@ -85,7 +92,7 @@ export default class Push extends React.Component {
       <View style={title.background}>
         <Text style={title.ShopperTitle}>Test Push</Text>
         <View style={title.allignButton}>
-          <Button title={'Press to Send Notification'} onPress={() => this.sendPushNotification()} />
+          <Button title={'Push Me'} onPress={() => this.sendPushNotification()} />
         </View>
       </View>
     );
@@ -98,6 +105,7 @@ const title = StyleSheet.create({
     height: "100%",
     width: "100%",
   },
+
   ShopperTitle: {
     marginTop: 25,
     textAlign: "center",
@@ -105,6 +113,7 @@ const title = StyleSheet.create({
     color: "coral",
     padding: 25,
   },
+
   allignButton: {
     marginLeft: -10,
     marginRight: -10,

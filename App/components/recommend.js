@@ -1,21 +1,13 @@
 import React, { useState } from "react";
 import {
-  Alert,
-  Keyboard,
-  FlatList,
-  StyleSheet,
   Text,
-  TouchableWithoutFeedback,
   TouchableOpacity,
   View,
   ScrollView,
 } from "react-native";
-import DataBaseComponent from "../components/DatabaseComponent.js";
-import HistoryDataBase from "../../Screens/History.js";
-import Items from "../components/Items.js";
 import * as SQLite from "expo-sqlite";
 import { useEffect } from "react";
-import { exp } from "react-native/Libraries/Animated/src/Easing";
+import styles from "../../Styling/RecommendStyling";
 
 const db = SQLite.openDatabase("Grocery_Items.db");
 
@@ -30,7 +22,7 @@ export default function Recommend({ submitHandler, setRecommendVisible }) {
     update();
   }, []);
 
-  //retrieving everything from the database, then putting them into an array and storing it in the state
+  //Retrieving everything from the database, then putting them into an array and storing it in the state
   update = () => {
     db.transaction((tx) => {
       tx.executeSql(`select * from items;`, [], (_, { rows: { _array } }) =>
@@ -39,6 +31,7 @@ export default function Recommend({ submitHandler, setRecommendVisible }) {
     });
   };
 
+  //What is shown in the recycle window
   const recycleWhenPressed = () => {
     setRecommendVisible(false);
     groceryItems.map((groceryItems) => {
@@ -91,59 +84,3 @@ export default function Recommend({ submitHandler, setRecommendVisible }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    height: 425,
-    marginBottom: 50,
-    backgroundColor: "#252525",
-  },
-
-  doneBtn: {
-    marginBottom: 90,
-    color: "#fff",
-    backgroundColor: "coral",
-    width: "100%", //width and height of the circle
-    height: 50,
-    borderRadius: 10,
-    alignItems: "center",
-    justifyContent: "center", //aligning the items in the center of the circle
-  },
-  header: {
-    backgroundColor: "#252525",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  headerText: {
-    marginTop: 0,
-    fontSize: 25,
-    padding: 0,
-    fontWeight: "bold",
-    color: "coral",
-  },
-  itemcontainer: {
-    backgroundColor: "#1f1f1f",
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 5,
-  },
-  itemText: {
-    color: "lightgrey",
-    marginBottom: 5,
-  },
-  itemTextName: {
-    color: "lightgrey",
-    fontWeight: "bold",
-    fontSize: 25,
-    marginBottom: 5,
-  },
-  listArea: {
-    backgroundColor: "#1f1f1f",
-    flex: 1,
-    paddingTop: 16,
-  },
-  sectionContainer: {
-    marginBottom: 16,
-    marginHorizontal: 16,
-  },
-});
