@@ -1,5 +1,15 @@
 import React, { useState } from "react";
-import { Alert, Keyboard, FlatList, StyleSheet, Text, TouchableWithoutFeedback, TouchableOpacity, View, TextInput } from "react-native";
+import {
+  Alert,
+  Keyboard,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+  View,
+  TextInput,
+} from "react-native";
 import Items from "../components/Items.js";
 import Add from "../components/Add.js";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -11,7 +21,6 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Recommend from "../components/recommend.js";
 import styles from "../../Styling/AddDeleteStyling";
-
 
 export default function AddDelete() {
   const [todos, setTodos] = useState([]);
@@ -40,14 +49,21 @@ export default function AddDelete() {
   // Input length checker (must be > 1)
   const submitHandler = (text, price, exp) => {
     if (isNaN(price)) {
-      Alert.alert("Alert!", "Price must be a number", [{ text: "OK", onPress: () => console.log("alert closed") }]);
+      Alert.alert("Alert!", "Price must be a number", [
+        { text: "OK", onPress: () => console.log("alert closed") },
+      ]);
     } else if (text.length > 1) {
       setTodos((prevTodos) => {
         setVisible(false);
-        return [{ text, price, exp, key: Math.random().toString() }, ...prevTodos];
+        return [
+          { text, price, exp, key: Math.random().toString() },
+          ...prevTodos,
+        ];
       });
     } else {
-      Alert.alert("Alert!", "Input must be over 1 character long", [{ text: "OK", onPress: () => console.log("alert closed") }]);
+      Alert.alert("Alert!", "Input must be over 1 character long", [
+        { text: "OK", onPress: () => console.log("alert closed") },
+      ]);
     }
   };
 
@@ -77,9 +93,17 @@ export default function AddDelete() {
         {/**Animatable.View is incorporated to give animation to the search bar coming into view*/}
         {/**Icon is used to add an icon in the search bar*/}
         <View style={styles.header}>
-          <Animatable.View animation="slideInRight" duration={900} style={{ height: 150, justifyContent: "center", paddingHorizontal: 5 }}>
+          <Animatable.View
+            animation="slideInRight"
+            duration={900}
+            style={{
+              height: 150,
+              justifyContent: "center",
+              paddingHorizontal: 5,
+            }}
+          >
             <Text style={styles.headerText}> Create Your List </Text>
-          </Animatable.View>   
+          </Animatable.View>
         </View>
         {/**Container containing the list and the add list item window */}
         <View style={styles.content}>
@@ -88,7 +112,13 @@ export default function AddDelete() {
           {/**{visible ? (If visible is true, do this command) : (if it is not true, do this command)} */}
 
           {/**Passing functions submitHandler and visibleToggleMain to the add component so they can be used outside of AddDelete*/}
-          {visible ? <Add style={styles.addContainer} submitHandler={submitHandler} visibleToggleMain={visibleToggleMain} /> : null}
+          {visible ? (
+            <Add
+              style={styles.addContainer}
+              submitHandler={submitHandler}
+              visibleToggleMain={visibleToggleMain}
+            />
+          ) : null}
           {/* ///////////////////////////////////////////////////////////////////////// */}
 
           {saveVisible ? (
@@ -96,7 +126,8 @@ export default function AddDelete() {
             <View style={styles.saveWindow}>
               <Text style={styles.saveTitle}>Are you sure?</Text>
               <Text style={styles.saveMessage}>
-                By pressing the "Save List" button, your list will be saved under MyList. Your items will also be saved to History.
+                By pressing the "Save List" button, your list will be saved
+                under MyList. Your items will also be saved to History.
               </Text>
 
               {/*Button for save operation */}
@@ -125,7 +156,10 @@ export default function AddDelete() {
           {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
           {recommendVisible ? (
             <View style={styles.recommendWindow}>
-              <Recommend submitHandler={submitHandler} />
+              <Recommend
+                submitHandler={submitHandler}
+                setRecommendVisible={setRecommendVisible}
+              />
               <TouchableOpacity
                 style={styles.recommendCancelBtn}
                 onPress={() => {
@@ -140,23 +174,37 @@ export default function AddDelete() {
           {/** List container*/}
           <View style={styles.list}>
             {/**Actual List */}
-            <FlatList style={styles.listItems} data={todos} renderItem={({ item }) => <Items item={item} pressHandler={pressHandler} />} />
+            <FlatList
+              style={styles.listItems}
+              data={todos}
+              renderItem={({ item }) => (
+                <Items item={item} pressHandler={pressHandler} />
+              )}
+            />
           </View>
         </View>
 
         {/*Footer View that houses the 3 buttons*/}
         <View style={styles.footer}>
           {/**Add "+" button */}
-          <Animatable.View animation="slideInRight" duration={1000} style={{ height: 120, justifyContent: "center", paddingHorizontal: 5 }}>
+          <Animatable.View
+            animation="slideInRight"
+            duration={1000}
+            style={{
+              height: 120,
+              justifyContent: "center",
+              paddingHorizontal: 5,
+            }}
+          >
             <TouchableOpacity
-                style={styles.addButton}
-                onPress={() => {
-                  setVisible(true);
-                }}
-              >
-                <MaterialIcons name="add-shopping-cart" size={30} color="white" />
-              </TouchableOpacity>
-          
+              style={styles.addButton}
+              onPress={() => {
+                setVisible(true);
+              }}
+            >
+              <MaterialIcons name="add-shopping-cart" size={30} color="white" />
+            </TouchableOpacity>
+
             {/**Save "SAVE" button
              * This button saves the whole list into the database
              */}
@@ -169,9 +217,9 @@ export default function AddDelete() {
               <MaterialIcons name="save-alt" size={28} color="white" />
             </TouchableOpacity>
             {/**"Recommended" button
-           * This button takes from the databasecomponent.js database and recommends new items as the user makes a new list.
-           */}
-           
+             * This button takes from the databasecomponent.js database and recommends new items as the user makes a new list.
+             */}
+
             <TouchableOpacity
               style={styles.recommendButton}
               onPress={() => {
@@ -190,4 +238,3 @@ export default function AddDelete() {
     </TouchableWithoutFeedback>
   );
 }
-
