@@ -17,6 +17,7 @@ script:
   - npx jest --ci
 install:
   - yarn
+  - npm
 jobs:
   include:
     - stage: deploy
