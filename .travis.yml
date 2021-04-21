@@ -1,4 +1,3 @@
----
 language: node_js
 node_js:
   - node
@@ -9,18 +8,15 @@ cache:
     - .jest
 before_script:
   - npm install -g npm@latest
+  - npm install
   - npm install jest-expo
   - npm install -g expo-cli
 script:
   - npm ci
   - npx jest --ci
-install:
-  - yarn
 jobs:
   include:
     - stage: deploy
       node_js: lts/*
       script:
         - npm ci
-
-
