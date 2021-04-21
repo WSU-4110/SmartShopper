@@ -1,13 +1,13 @@
 import React from "react";
 import { render } from "react-native-testing-library";
 import renderer from "react-test-renderer";
-import DataBaseComponent from "./components/DatabaseComponent";
-import Items from "./components/DatabaseComponent";
-import { componentDidMount } from "./components/DatabaseComponent";
-import add from "./components/DatabaseComponent";
-import deleteFromDB from "./components/DatabaseComponent";
-import update from "./components/DatabaseComponent";
-jest.mock("./components/DatabaseComponent");
+import DataBaseComponent from "../App/components/DatabaseComponent";
+import Items from "../App/components/DatabaseComponent";
+import { componentDidMount } from "../App/components/DatabaseComponent";
+import add from "../App/components/DatabaseComponent";
+import deleteFromDB from "../App/components/DatabaseComponent";
+import update from "../App/components/DatabaseComponent";
+jest.mock("../App/components/DatabaseComponent");
 
 test("testing if the component was mounted at least once.", () => {
   const componentDidMount = jest.fn();

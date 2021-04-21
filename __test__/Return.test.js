@@ -1,6 +1,6 @@
-import Return from "../Return";
-jest.mock("../Return");
+import Return from "./Return";
+jest.mock("./Return");
 
-test('view', () => {
-    expect(Return);
+test("view", () => {
+  expect(Return);
 });

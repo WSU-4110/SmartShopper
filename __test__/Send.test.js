@@ -1,10 +1,9 @@
-import React from 'react';
-import Send from '../Send';
-import { cleanup } from '@testing-library/react';
+import React from "react";
+import Send from "../__test__/Send";
+import { cleanup } from "@testing-library/react";
 
 afterEach(cleanup);
 
-test('Send method', () => {
+test("Send method", () => {
   expect(Send);
 });
-

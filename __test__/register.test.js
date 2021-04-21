@@ -1,5 +1,5 @@
-import register from '../register';
+import register from "./register";
 
-test('Seeing if it works', () => {
+test("Seeing if it works", () => {
   expect(register);
 });

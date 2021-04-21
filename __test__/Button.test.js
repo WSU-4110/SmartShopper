@@ -1,5 +1,5 @@
-const Button = require('../Button');
+const Button = require("./Button");
 
-test('changing the text to obunga', () => {
+test("changing the text to obunga", () => {
   expect(Button);
 });
