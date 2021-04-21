@@ -15,12 +15,13 @@ before_script:
 script:
   - npm ci
   - npx jest --ci
+install:
+  - yarn
 jobs:
   include:
     - stage: deploy
       node_js: lts/*
       script:
         - npm ci
-install:
-  -yarn
+
 
