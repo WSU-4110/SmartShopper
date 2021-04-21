@@ -12,3 +12,5 @@ before_script:
 script:
   - npm ci
   - npx jest --ci
+install:
+  - yarn
