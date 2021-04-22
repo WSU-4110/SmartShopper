@@ -9,7 +9,6 @@ cache:
 before_script:
   - npm install -g npm@latest
 script:
-  - npm ci
   - npx jest --ci
 install:
   - yarn
