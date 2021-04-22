@@ -6,10 +6,10 @@ cache:
   directories:
     - ~/.npm
     - .jest
-before_script:
-script:
 install:
   - yarn
+before_script:
+script:
 jobs:
   include:
     - stage: deploy
