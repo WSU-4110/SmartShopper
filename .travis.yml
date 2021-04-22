@@ -9,6 +9,8 @@ cache:
 before_script:
   - npm install -g npm@latest
 script:
+install:
+  - yarn
 jobs:
   include:
     - stage: deploy
