@@ -8,10 +8,10 @@ cache:
     - .jest
 install:
   - yarn
+  - npm
 before_script:
 script:
-  - yarn test
-  - yarn build
+  - npm test --coverage
 jobs:
   include:
     - stage: deploy
