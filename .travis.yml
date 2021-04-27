@@ -10,7 +10,6 @@ install:
   - yarn
   
 script:
-  - yarn add jest@20.0.4
   - npm test --coverage
 jobs:
   include:
