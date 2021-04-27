@@ -8,8 +8,6 @@ cache:
     - .jest
 install:
   - yarn
-before_script:
-script:
 jobs:
   include:
     - stage: deploy
