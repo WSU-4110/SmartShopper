@@ -8,12 +8,17 @@ cache:
     - .jest
 install:
   - yarn
-  
+before_script:
+  - npm install -g npm@latest
 script:
-  - npm test --coverage
+   - npm ci
+  - npx jest --ci
 jobs:
   include:
     - stage: deploy
       node_js: lts/*
       script:
         - npm ci
+        
+        
+      
