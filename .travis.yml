@@ -4,13 +4,11 @@ node_js:
   - lts/*
 cache:
   directories:
-    - ~/.npm
     - .jest
 install:
   - yarn
   - npm install -g npm@latest
 script:
-  echo "npm test temporarily disabled"
   - npm run test
 
         
