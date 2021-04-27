@@ -13,11 +13,6 @@ script:
   echo "npm test temporarily disabled"
   - npm run test
 
-jobs:
-  include:
-    - stage: deploy
-      node_js: lts/*
-      script:
         
         
         
