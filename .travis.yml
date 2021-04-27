@@ -10,7 +10,6 @@ install:
   - yarn
 before_script:
 script:
-  - npm test --coverage
 jobs:
   include:
     - stage: deploy
