@@ -7,7 +7,6 @@ cache:
     - .jest
 install:
   - yarn
-  - npm install -g npm@latest
 script:
   - npm -s run test
 
