@@ -9,7 +9,7 @@ install:
   - yarn
   - npm install -g npm@latest
 script:
-  - npm run test
+  - npm -s run test
 
         
         
