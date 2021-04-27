@@ -8,6 +8,7 @@ cache:
     - .jest
 install:
   - yarn
+  
   before_script:
 script:
   - yarn add jest@20.0.4
