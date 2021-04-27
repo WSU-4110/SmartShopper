@@ -8,7 +8,6 @@ cache:
     - .jest
 install:
   - yarn
-before_script:
   - npm install -g npm@latest
 script:
    - npm ci
