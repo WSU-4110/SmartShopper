@@ -5,10 +5,6 @@ cache:
   directories:
     - .jest
 install:
+    - yarn
 script:
   - yarn test -u
-
-        
-        
-        
-      
