@@ -11,7 +11,7 @@ install:
   - npm install -g npm@latest
 script:
    - npm ci
-  - npx jest --ci
+   - npx jest --ci
 jobs:
   include:
     - stage: deploy
