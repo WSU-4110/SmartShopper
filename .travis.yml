@@ -1,12 +1,10 @@
 language: node_js
 node_js:
   - "14.15.5"
-  - lts/*
 cache:
   directories:
     - .jest
 install:
-  - yarn
 script:
   - yarn test -u
 
