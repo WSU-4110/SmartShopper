@@ -10,6 +10,7 @@ install:
   - yarn
   - npm install -g npm@latest
 script:
+  - npm test
 
 jobs:
   include:
